@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0C737A2238032C00DC699C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D0C73792238032C00DC699C /* GoogleService-Info.plist */; };
+		21C765BB2BE4E997F43BA14C /* Pods_BingeCapstoneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */; };
 		5BE03DA022190E57006B2603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03D9F22190E57006B2603 /* AppDelegate.swift */; };
 		5BE03DA522190E57006B2603 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA322190E57006B2603 /* Main.storyboard */; };
 		5BE03DA722190E59006B2603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA622190E59006B2603 /* Assets.xcassets */; };
@@ -17,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D0C73792238032C00DC699C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BE03D9C22190E57006B2603 /* BingeCapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingeCapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE03D9F22190E57006B2603 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BE03DA422190E57006B2603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewCell.swift; sourceTree = "<group>"; };
 		5BE03DB322191550006B2603 /* BarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarListViewController.swift; sourceTree = "<group>"; };
 		5BE03DB522191569006B2603 /* BarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDetailViewController.swift; sourceTree = "<group>"; };
+		877CA9D4A04C91DB9238CDB4 /* Pods-BingeCapstoneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BingeCapstoneProject.debug.xcconfig"; path = "Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject.debug.xcconfig"; sourceTree = "<group>"; };
+		C5F249D3A64952D163686E00 /* Pods-BingeCapstoneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BingeCapstoneProject.release.xcconfig"; path = "Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject.release.xcconfig"; sourceTree = "<group>"; };
+		CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BingeCapstoneProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C765BB2BE4E997F43BA14C /* Pods_BingeCapstoneProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F7DCFC1F2F9D72F6851703A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				877CA9D4A04C91DB9238CDB4 /* Pods-BingeCapstoneProject.debug.xcconfig */,
+				C5F249D3A64952D163686E00 /* Pods-BingeCapstoneProject.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5BE03D9322190E57006B2603 = {
 			isa = PBXGroup;
 			children = (
 				5BE03D9E22190E57006B2603 /* BingeCapstoneProject */,
 				5BE03D9D22190E57006B2603 /* Products */,
+				0F7DCFC1F2F9D72F6851703A /* Pods */,
+				729C46EA71FE12E17CA499C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,11 +81,20 @@
 				5BE03DA622190E59006B2603 /* Assets.xcassets */,
 				5BE03DA822190E59006B2603 /* LaunchScreen.storyboard */,
 				5BE03DAB22190E59006B2603 /* Info.plist */,
+				0D0C73792238032C00DC699C /* GoogleService-Info.plist */,
 				5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */,
 				5BE03DB322191550006B2603 /* BarListViewController.swift */,
 				5BE03DB522191569006B2603 /* BarDetailViewController.swift */,
 			);
 			path = BingeCapstoneProject;
+			sourceTree = "<group>";
+		};
+		729C46EA71FE12E17CA499C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BE03DAE22190E59006B2603 /* Build configuration list for PBXNativeTarget "BingeCapstoneProject" */;
 			buildPhases = (
+				91189B502124FC8983A21B8D /* [CP] Check Pods Manifest.lock */,
 				5BE03D9822190E57006B2603 /* Sources */,
 				5BE03D9922190E57006B2603 /* Frameworks */,
 				5BE03D9A22190E57006B2603 /* Resources */,
+				C6815B160C8EE54F119F0E5F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,12 +158,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BE03DAA22190E59006B2603 /* LaunchScreen.storyboard in Resources */,
+				0D0C737A2238032C00DC699C /* GoogleService-Info.plist in Resources */,
 				5BE03DA722190E59006B2603 /* Assets.xcassets in Resources */,
 				5BE03DA522190E57006B2603 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		91189B502124FC8983A21B8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BingeCapstoneProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6815B160C8EE54F119F0E5F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5BE03D9822190E57006B2603 /* Sources */ = {
@@ -288,6 +367,7 @@
 		};
 		5BE03DAF22190E59006B2603 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 877CA9D4A04C91DB9238CDB4 /* Pods-BingeCapstoneProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BrockGibson.BingeCapstoneProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ITCapstone.CapstoneApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -306,6 +386,7 @@
 		};
 		5BE03DB022190E59006B2603 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5F249D3A64952D163686E00 /* Pods-BingeCapstoneProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,7 +396,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = BrockGibson.BingeCapstoneProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ITCapstone.CapstoneApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
