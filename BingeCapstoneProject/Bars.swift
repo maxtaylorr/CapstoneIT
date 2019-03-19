@@ -7,5 +7,23 @@
 //
 
 import Foundation
-
+import UIKit
 //Data Model for Bar Lists
+
+class Bar {
+    
+    let name: String
+    let date: Date
+    let latitude: String
+    let longitude: String
+    let openingTime: String
+    var deals = [String]()
+
+    init(name: String, date: Date, latitude: String, longitude: String, openingTime: String, deals: [String]) {
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+        self.openingTime = openingTime
+        self.deals = deals
+    }
+}
