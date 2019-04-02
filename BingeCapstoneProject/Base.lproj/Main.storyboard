@@ -80,6 +80,9 @@
                         <viewLayoutGuide key="safeArea" id="wM9-LU-iT1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bars" id="gnh-iT-G6s"/>
+                    <connections>
+                        <outlet property="barsTableView" destination="VtX-si-MPq" id="96V-XI-rqh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luS-J9-PCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
