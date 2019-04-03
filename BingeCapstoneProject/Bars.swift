@@ -17,7 +17,7 @@ class Bar {
     let latitude: String
     let longitude: String
     let openingTime: String
-    var deals = [Deal]()
+    var deals = [String]()
 
     init(name: String, date: Date, latitude: String, longitude: String, openingTime: String, deals: [String]) {
         self.name = name
