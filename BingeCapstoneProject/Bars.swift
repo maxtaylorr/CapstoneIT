@@ -14,12 +14,12 @@ class Bar {
     
     let name: String
     let date: Date
-    let latitude: String
-    let longitude: String
+    let latitude: Double
+    let longitude: Double
     let openingTime: String
     var deals = [String]()
 
-    init(name: String, date: Date, latitude: String, longitude: String, openingTime: String, deals: [String]) {
+    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [String]) {
         self.name = name
         self.date = date
         self.latitude = latitude
