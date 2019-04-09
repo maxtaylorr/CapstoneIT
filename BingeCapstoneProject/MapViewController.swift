@@ -25,12 +25,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Location manager
     var locationManager = CLLocationManager()
     
+    // array of bars
+    var bars = [Bar]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getCurrentLocation()
         createMap()
         
-        // Do any additional setup after loading the view.
+        // create array of bars
+        
+        // makePointsOnMap(bars)
+        
     }
     
     func createMap() {
@@ -66,12 +72,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return view
     }
     
-//    func makePointOnMap(_ bar: Bar) {
-//        let point = BarPointAnnotation()
-//        point.bar = bar
-//        point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
-//        point.title = bar.name
-//        mapView.addAnnotation(point)
+//    func makePointsOnMap(_ bars: [Bar]) {
+//        for bar in bars {
+//            let point = BarPointAnnotation()
+//            point.bar = bar
+//            point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
+//            point.title = bar.name
+//            mapView.addAnnotation(point)
+//        }
 //    }
     
     // perform segue when tapping callout info on pin
@@ -103,15 +111,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
