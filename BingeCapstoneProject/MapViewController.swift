@@ -86,7 +86,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             selectedAnnotation = view.annotation as? BarPointAnnotation
-            performSegue(withIdentifier: "showBarDetail", sender: self)
+            performSegue(withIdentifier: "showDetailFromMap", sender: self)
         }
     }
     

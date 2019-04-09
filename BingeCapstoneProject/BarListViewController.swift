@@ -47,15 +47,14 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetailFromTable", sender: self)
     }
-    */
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BarDetailViewController, let selectedRow = barTableView.indexPathForSelectedRow {
+            destination.passedBar = bars[selectedRow.row]
+        }
+    }
 
 }
