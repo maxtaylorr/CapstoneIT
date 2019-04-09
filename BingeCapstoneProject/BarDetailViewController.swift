@@ -10,6 +10,9 @@ import UIKit
 
 class BarDetailViewController: UIViewController {
 
+    // Bar passed by selection from map or table
+    var passedBar: Bar?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -82,6 +82,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    // pass Bar to BarDetailViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation, let bar = annotation.bar {
+            destination.passedBar = bar
+        }
+    }
+    
     func getCurrentLocation()
     {
         self.locationManager.requestAlwaysAuthorization()
