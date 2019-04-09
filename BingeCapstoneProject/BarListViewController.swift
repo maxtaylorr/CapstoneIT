@@ -1,19 +1,17 @@
-//
 //  BarListViewController.swift
 //  BingeCapstoneProject
 //
 //  Created by Brock Gibson on 2/16/19.
 //  Copyright © 2019 Brock Gibson. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import FirebaseFirestore
 
 class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // table view
-    @IBOutlet weak var barTableView: UITableView!
+    // table view iboutlet
+    @IBOutlet weak var barsTableView: UITableView!
     
     // bars
     var bars = [Bar]()
@@ -21,10 +19,12 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dbFire = Firestore.firestore().collection("bars")
-        dbFire.addDocument(data: ["Max": "Hey"])
+//        let dbFire = Firestore.firestore().collection("bars")
+//        dbFire.addDocument(data: ["Max": "Hey"])
         
         // Do any additional setup after loading the view.
+        bars = Bar.fetchAllBars()
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,7 +39,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
         let identifier = "barCell"
         let bar = bars[indexPath.row]
         
-        let cell = barTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cell = barsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? BarTableViewCell {
             cell.barTitleLabel.text = bar.name
             cell.BarDescLabel.text = bar.openingTime
@@ -52,7 +52,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? BarDetailViewController, let selectedRow = barTableView.indexPathForSelectedRow {
+        if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
             destination.passedBar = bars[selectedRow.row]
         }
     }
