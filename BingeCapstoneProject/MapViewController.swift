@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseFirestore
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -15,6 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let centerLongitude = -92.328
     let latitudeDelta = 0.02
     let longitudeDelta = 0.02
+    
+    var db: Firestore!
     
     // Map View
     @IBOutlet weak var mapView: MKMapView!
@@ -30,12 +33,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         getCurrentLocation()
         createMap()
         
-        // create array of bars
+        let settings = FirestoreSettings()
+        Firestore.firestore().settings = settings
+        db = Firestore.firestore()
         
-        // makePointsOnMap(bars)
+        pullData()
+        
+        // create array of bars
+
+//        makePointsOnMap(bars)
         
     }
     
@@ -72,15 +82,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return view
     }
     
-//    func makePointsOnMap(_ bars: [Bar]) {
-//        for bar in bars {
-//            let point = BarPointAnnotation()
-//            point.bar = bar
-//            point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
-//            point.title = bar.name
-//            mapView.addAnnotation(point)
-//        }
-//    }
+    func makePointOnMap(_ bar: Bar) {
+
+        let point = BarPointAnnotation()
+        point.bar = bar
+        point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
+        point.title = bar.name
+        mapView.addAnnotation(point)
+        
+    }
     
     // perform segue when tapping callout info on pin
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -89,6 +99,40 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             performSegue(withIdentifier: "showDetailFromMap", sender: self)
         }
     }
+    
+        func pullData(){
+            db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
+               
+                var bars = [Bar]()
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+    
+                        let name = document.data()["name"] as! String
+                        let hours = document.data()["hoursOpen"] as! String
+                        let deals = document.data()["deals"] as? Array ?? [""]
+    
+                        var lat: Double = 0.0
+                        var lon: Double = 0.0
+                        if let coords = document.get("coords") {
+                            let point = coords as! GeoPoint
+                            lat = point.latitude
+                            lon = point.longitude
+                        }
+    
+                        let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+    
+                        bars.append(bar)
+                        self.makePointOnMap(bar)
+
+                    }
+                }
+                DispatchQueue.main.async {
+                    // not sure what to do here
+                }
+            }
+        }
     
     // pass Bar to BarDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
