@@ -10,17 +10,66 @@ import FirebaseFirestore
 
 class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var db: Firestore!
+    
     // table view iboutlet
     @IBOutlet weak var barsTableView: UITableView!
     
+    // bars
     var bars = [Bar]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bars = Bar.fetchAllBars()
-        print(bars)
+        // Do any additional setup after loading the view.
         
+        barsTableView.dataSource = self
+        barsTableView.delegate = self
+        
+        let settings = FirestoreSettings()
+        Firestore.firestore().settings = settings
+        db = Firestore.firestore()
+        
+        pullData()
+        DispatchQueue.main.async {
+            self.barsTableView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    func pullData() {
+        db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+
+                    let name = document.data()["name"] as! String
+                    let hours = document.data()["hoursOpen"] as! String
+                    let deals = document.data()["deals"] as? Array ?? [""]
+
+                    var lat: Double = 0.0
+                    var lon: Double = 0.0
+                    if let coords = document.get("coords") {
+                        let point = coords as! GeoPoint
+                        lat = point.latitude
+                        lon = point.longitude
+                    }
+
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+
+                    self.bars.append(bar)
+                    print(bar.name)
+                }
+            }
+            DispatchQueue.main.async {
+                self.barsTableView.reloadData()
+            }
+        }
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -28,22 +77,25 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return bars.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "barCell", for: indexPath)
+        let identifier = "barCell"
+        let bar = bars[indexPath.row]
+        
+        let cell = barsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        if let cell = cell as? BarTableViewCell {
+            cell.barTitleLabel.text = bar.name
+            cell.BarDescLabel.text = bar.openingTime
+        }
         return cell
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
+            destination.passedBar = bars[selectedRow.row]
+        }
+    }
+
 }

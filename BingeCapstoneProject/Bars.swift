@@ -22,9 +22,9 @@ class Bar {
     let latitude: Double
     let longitude: Double
     let openingTime: String
-    var deals = [Deal]()
+    var deals = [String]()
 
-    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [Deal]) {
+    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [String]) {
         self.name = name
         self.date = date
         self.latitude = latitude
@@ -62,7 +62,7 @@ class Bar {
                     let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
                     
                     bars.append(bar)
-                    print(bars)
+                    print(bar.name)
                 }
             }
         }
