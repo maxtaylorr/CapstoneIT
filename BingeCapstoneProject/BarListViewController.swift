@@ -30,50 +30,47 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
         
-        bars = Bar.fetchAllBars()
+        pullData()
         DispatchQueue.main.async {
             self.barsTableView.reloadData()
         }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//            bars = Bar.fetchAllBars()
-//            DispatchQueue.main.async {
-//                self.barsTableView.reloadData()
-//            }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
-//    func pullData() {
-//        db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//
-//                    let name = document.data()["name"] as! String
-//                    let hours = document.data()["hoursOpen"] as! String
-//                    let deals = document.data()["deals"] as? Array ?? [""]
-//
-//                    var lat: Double = 0.0
-//                    var lon: Double = 0.0
-//                    if let coords = document.get("coords") {
-//                        let point = coords as! GeoPoint
-//                        lat = point.latitude
-//                        lon = point.longitude
-//                    }
-//
-//                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
-//
-//                    self.bars.append(bar)
-//                    print(bar.name)
-//                }
-//            }
-//            DispatchQueue.main.async {
-//                self.barsTableView.reloadData()
-//            }
-//        }
-//
-//    }
+    func pullData() {
+        db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+
+                    let name = document.data()["name"] as! String
+                    let hours = document.data()["hoursOpen"] as! String
+                    let deals = document.data()["deals"] as? Array ?? [""]
+
+                    var lat: Double = 0.0
+                    var lon: Double = 0.0
+                    if let coords = document.get("coords") {
+                        let point = coords as! GeoPoint
+                        lat = point.latitude
+                        lon = point.longitude
+                    }
+
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+
+                    self.bars.append(bar)
+                    print(bar.name)
+                }
+            }
+            DispatchQueue.main.async {
+                self.barsTableView.reloadData()
+            }
+        }
+
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -93,10 +90,6 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.BarDescLabel.text = bar.openingTime
         }
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetailFromTable", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

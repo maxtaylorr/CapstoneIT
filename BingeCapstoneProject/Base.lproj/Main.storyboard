@@ -22,15 +22,15 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="barCell" rowHeight="89" id="UmX-Dl-4Zm" customClass="BarTableViewCell" customModule="BingeCapstoneProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="barCell" rowHeight="90" id="UmX-Dl-4Zm" customClass="BarTableViewCell" customModule="BingeCapstoneProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UmX-Dl-4Zm" id="fFQ-hn-Txt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZiN-3c-3fT">
-                                                    <rect key="frame" x="15" y="11" width="67" height="67"/>
+                                                    <rect key="frame" x="15" y="11.5" width="67" height="67"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="67" id="kch-OV-Jl3"/>
                                                         <constraint firstAttribute="width" constant="67" id="vLj-pf-fbC"/>
@@ -43,7 +43,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEq-JV-4RA">
-                                                    <rect key="frame" x="90" y="47.5" width="270" height="21"/>
+                                                    <rect key="frame" x="90" y="48.5" width="270" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -153,6 +153,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ekh-E6-LFT"/>
                     </view>
+                    <connections>
+                        <outlet property="barDescLabel" destination="H4B-0I-V79" id="xdI-20-Bdl"/>
+                        <outlet property="barInfoTextView" destination="shK-IR-lon" id="gGb-LG-xPZ"/>
+                        <outlet property="barMapView" destination="r4N-0B-rla" id="IJ6-Br-n60"/>
+                        <outlet property="barTitleLabel" destination="rQj-cU-3cg" id="ThZ-nJ-f4E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSK-Jr-ohU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
