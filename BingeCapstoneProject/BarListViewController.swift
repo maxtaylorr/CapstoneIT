@@ -19,12 +19,14 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let dbFire = Firestore.firestore().collection("bars")
-//        dbFire.addDocument(data: ["Max": "Hey"])
-        
         // Do any additional setup after loading the view.
-        bars = Bar.fetchAllBars()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            bars = Bar.fetchAllBars()
+            barsTableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
