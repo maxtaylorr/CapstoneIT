@@ -20,9 +20,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
+                
         barsTableView.dataSource = self
         barsTableView.delegate = self
         
