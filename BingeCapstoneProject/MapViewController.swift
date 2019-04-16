@@ -128,9 +128,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
                     }
                 }
-                DispatchQueue.main.async {
-                    // not sure what to do here
-                }
+//                DispatchQueue.main.async {
+//                    // not sure what to do here
+//                }
             }
         }
     
