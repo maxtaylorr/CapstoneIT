@@ -33,6 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         
         getCurrentLocation()
         createMap()
@@ -75,8 +76,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         } else {
             
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            view.isUserInteractionEnabled = true
+            view.pinTintColor = .black
             view.canShowCallout = true
-            view.animatesDrop = true
+            view.animatesDrop = false
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return view
