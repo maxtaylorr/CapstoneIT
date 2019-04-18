@@ -56,11 +56,39 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
                         lat = point.latitude
                         lon = point.longitude
                     }
+                    
+                    var dealsArray: [Deal] = []
+                    
+                    let trigger = CharacterSet(charactersIn: "$")
+                    var dealHours: String = ""
+                    var dealsStringArray: [String] = []
+                    
+                    for deal in deals {
+                        if let test = deal.rangeOfCharacter(from: trigger) {
+                            print("found money sign")
+                            
+                            dealsStringArray.append(deal)
+                            
+                        } else {
+                            print("no money sign")
+                            
+                            if dealsStringArray.count > 0 {
+                                dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
+                                dealsStringArray = []
+                            }
+                            
+                            dealHours = deal
+                        }
+                    }
+                    
+                    dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
+                    dealsStringArray = []
+                    
 
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: dealsArray)
+                    
 
                     self.bars.append(bar)
-                    print(bar.name)
                 }
             }
             DispatchQueue.main.async {

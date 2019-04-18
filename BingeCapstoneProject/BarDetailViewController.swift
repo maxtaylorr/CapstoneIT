@@ -28,7 +28,7 @@ class BarDetailViewController: UIViewController {
         
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.openingTime
-//        barInfoTextView.text = bar.deals
+        barInfoTextView.text = "\(bar.deals)"
         
         focusMapView(bar)
         addPin(bar)
