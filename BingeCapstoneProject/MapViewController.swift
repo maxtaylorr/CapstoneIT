@@ -81,6 +81,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             view.canShowCallout = true
             view.animatesDrop = false
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//            view.leftCalloutAccessoryView = UIImage()
         }
         return view
     }

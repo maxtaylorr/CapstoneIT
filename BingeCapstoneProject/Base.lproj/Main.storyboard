@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="1709.5999999999999" y="288.30584707646182"/>
         </scene>
-        <!--Map View-->
+        <!--Bars-->
         <scene sceneID="uwQ-J4-MaE">
             <objects>
                 <viewController id="tvA-9c-SMh" customClass="MapViewController" customModule="BingeCapstoneProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -186,7 +186,7 @@
                         <viewLayoutGuide key="safeArea" id="APs-Cr-Lqs"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map View" id="LOm-YL-1UT"/>
-                    <navigationItem key="navigationItem" id="5Gy-hi-KMq"/>
+                    <navigationItem key="navigationItem" title="Bars" id="5Gy-hi-KMq"/>
                     <connections>
                         <outlet property="mapView" destination="X6L-ze-nTD" id="Co0-MW-KuM"/>
                         <segue destination="khR-kP-foJ" kind="show" identifier="showDetailFromMap" id="kbW-1c-yeq"/>
