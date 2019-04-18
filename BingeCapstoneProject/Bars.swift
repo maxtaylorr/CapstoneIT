@@ -22,9 +22,9 @@ class Bar {
     let latitude: Double
     let longitude: Double
     let openingTime: String
-    var deals = [String]()
+    var deals = [Deal]()
 
-    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [String]) {
+    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [Deal]) {
         self.name = name
         self.date = date
         self.latitude = latitude
@@ -72,7 +72,42 @@ class Bar {
     
 }
 
-struct Deal {
+class Deal {
     let hours: String
     let deals: [String]
+    
+    init(hours: String, deals: [String]) {
+        self.hours = hours
+        self.deals = deals
+    }
+    
+    class func loadDeals(_ deals: [String]) -> [Deal]{
+        
+        var dealsArray: [Deal] = []
+        
+        let trigger = CharacterSet(charactersIn: "$")
+        var hours: String
+        var dealsStringArray: [String] = []
+        
+        for deal in deals {
+            if let test = deal.rangeOfCharacter(from: trigger) {
+                print("found money sign")
+                
+                dealsStringArray.append(deal)
+                
+            } else {
+                print("no money sign")
+                
+                hours = deal
+                
+                if dealsStringArray.count > 0 {
+                    dealsArray.append(Deal(hours: hours, deals: dealsStringArray))
+                    dealsStringArray = []
+                    hours = ""
+                }
+            }
+        }
+        
+        return dealsArray
+    }
 }
