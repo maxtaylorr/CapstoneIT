@@ -28,7 +28,19 @@ class BarDetailViewController: UIViewController {
         
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.openingTime
-        barInfoTextView.text = "\(bar.deals)"
+        
+        var dealsString: String = ""
+        
+        for dealHour in bar.deals {
+            dealsString += "\(dealHour.hours) \n"
+            
+            for deal in dealHour.deals {
+                dealsString += "\t \(deal) \n"
+            }
+            dealsString += "\n"
+            
+        }
+        barInfoTextView.text = dealsString
         
         focusMapView(bar)
         addPin(bar)
