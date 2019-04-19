@@ -22,14 +22,16 @@ class Bar {
     let latitude: Double
     let longitude: Double
     let openingTime: String
+    let imageURL: String
     var deals = [Deal]()
 
-    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [Deal]) {
+    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, imageURL: String, deals: [Deal]) {
         self.name = name
         self.date = date
         self.latitude = latitude
         self.longitude = longitude
         self.openingTime = openingTime
+        self.imageURL = imageURL
         self.deals = deals
     }
     
