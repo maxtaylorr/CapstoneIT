@@ -80,7 +80,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
                     dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
                     dealsStringArray = []
 
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: dealsArray)
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: dealsArray)
                     
                     self.bars.append(bar)
                 }
