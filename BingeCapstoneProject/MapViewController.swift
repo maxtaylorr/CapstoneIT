@@ -110,6 +110,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     for document in querySnapshot!.documents {
     
                         let name = document.data()["name"] as! String
+                        let imageURL = document.data()["imageURL"] as! String
                         let hours = document.data()["hoursOpen"] as! String
                         let deals = document.data()["deals"] as? Array ?? [""]
     
@@ -121,7 +122,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                             lon = point.longitude
                         }
     
-                        let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+                        let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: [])
     
                         bars.append(bar)
                         self.makePointOnMap(bar)

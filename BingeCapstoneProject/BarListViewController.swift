@@ -7,6 +7,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import Kingfisher
 
 class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -46,6 +47,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
                 for document in querySnapshot!.documents {
 
                     let name = document.data()["name"] as! String
+                    let imageURL = document.data()["imageURL"] as! String
                     let hours = document.data()["hoursOpen"] as! String
                     let deals = document.data()["deals"] as? Array ?? [""]
 
@@ -57,7 +59,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
                         lon = point.longitude
                     }
 
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: [])
 
                     self.bars.append(bar)
                     print(bar.name)
@@ -81,11 +83,15 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "barCell"
         let bar = bars[indexPath.row]
-        
+        let url = URL(string: bar.imageURL)
+        //let processor = RoundCornerImageProcessor(cornerRadius: 20)
+        //let processor = CroppingImageProcessor(size: CGSize(width: 100, height: 100), anchor: CGPoint(x: 0.5, y: 0.5))
+
         let cell = barsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? BarTableViewCell {
             cell.barTitleLabel.text = bar.name
             cell.BarDescLabel.text = bar.openingTime
+            cell.barImage.kf.setImage(with: url)
         }
         return cell
     }

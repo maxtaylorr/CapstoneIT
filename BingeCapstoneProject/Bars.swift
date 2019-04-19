@@ -22,14 +22,16 @@ class Bar {
     let latitude: Double
     let longitude: Double
     let openingTime: String
+    let imageURL: String
     var deals = [String]()
 
-    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, deals: [String]) {
+    init(name: String, date: Date, latitude: Double, longitude: Double, openingTime: String, imageURL: String, deals: [String]) {
         self.name = name
         self.date = date
         self.latitude = latitude
         self.longitude = longitude
         self.openingTime = openingTime
+        self.imageURL = imageURL
         self.deals = deals
     }
     
@@ -48,6 +50,7 @@ class Bar {
                 for document in querySnapshot!.documents {
                     
                     let name = document.data()["name"] as! String
+                    let imageURL = document.data()["imageURL"] as! String
                     let hours = document.data()["hoursOpen"] as! String
                     let deals = document.data()["deals"] as? Array ?? [""]
                     
@@ -59,7 +62,7 @@ class Bar {
                         lon = point.longitude
                     }
                     
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: [])
                     
                     bars.append(bar)
                     print(bar.name)
@@ -72,7 +75,42 @@ class Bar {
     
 }
 
-struct Deal {
+class Deal {
     let hours: String
     let deals: [String]
+    
+    init(hours: String, deals: [String]) {
+        self.hours = hours
+        self.deals = deals
+    }
+    
+    class func loadDeals(_ deals: [String]) -> [Deal]{
+        
+        var dealsArray: [Deal] = []
+        
+        let trigger = CharacterSet(charactersIn: "$")
+        var hours: String
+        var dealsStringArray: [String] = []
+        
+        for deal in deals {
+            if let test = deal.rangeOfCharacter(from: trigger) {
+                print("found money sign")
+                
+                dealsStringArray.append(deal)
+                
+            } else {
+                print("no money sign")
+                
+                hours = deal
+                
+                if dealsStringArray.count > 0 {
+                    dealsArray.append(Deal(hours: hours, deals: dealsStringArray))
+                    dealsStringArray = []
+                    hours = ""
+                }
+            }
+        }
+        
+        return dealsArray
+    }
 }
