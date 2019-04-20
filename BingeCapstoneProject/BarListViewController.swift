@@ -59,17 +59,38 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
                         lon = point.longitude
                     }
 
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: [])
-
+                    var dealsArray: [Deal] = []
+                    
+                    let trigger = CharacterSet(charactersIn: "$")
+                    var dealHours: String = ""
+                    var dealsStringArray: [String] = []
+                    
+                    for deal in deals {
+                        if let test = deal.rangeOfCharacter(from: trigger) {
+                            dealsStringArray.append(deal)
+                            
+                        } else {
+                            if dealsStringArray.count > 0 {
+                                dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
+                                dealsStringArray = []
+                            }
+                            
+                            dealHours = deal
+                        }
+                    }
+                    dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
+                    dealsStringArray = []
+                    
+                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: dealsArray)
+                    
                     self.bars.append(bar)
-                    print(bar.name)
                 }
             }
             DispatchQueue.main.async {
                 self.barsTableView.reloadData()
             }
         }
-
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
