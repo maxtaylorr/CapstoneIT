@@ -44,34 +44,4 @@ class Deal {
         self.hours = hours
         self.deals = deals
     }
-    
-    class func loadDeals(_ deals: [String]) -> [Deal]{
-        
-        var dealsArray: [Deal] = []
-        
-        let trigger = CharacterSet(charactersIn: "$")
-        var hours: String
-        var dealsStringArray: [String] = []
-        
-        for deal in deals {
-            if let test = deal.rangeOfCharacter(from: trigger) {
-                print("found money sign")
-                
-                dealsStringArray.append(deal)
-                
-            } else {
-                print("no money sign")
-                
-                hours = deal
-                
-                if dealsStringArray.count > 0 {
-                    dealsArray.append(Deal(hours: hours, deals: dealsStringArray))
-                    dealsStringArray = []
-                    hours = ""
-                }
-            }
-        }
-        
-        return dealsArray
-    }
 }
