@@ -116,6 +116,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         let name = document.data()["name"] as! String
                         let hours = document.data()["hoursOpen"] as! String
                         let deals = document.data()["deals"] as? Array ?? [""]
+                        let imageURL = document.data()["imageURL"] as! String
     
                         var lat: Double = 0.0
                         var lon: Double = 0.0
