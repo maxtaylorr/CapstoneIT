@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -200,10 +201,13 @@
         <scene sceneID="BgQ-Zv-YXj">
             <objects>
                 <navigationController id="HK4-Mb-37t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map View" id="UFP-iA-QyK"/>
+                    <tabBarItem key="tabBarItem" title="Map View" id="UFP-iA-QyK">
+                        <color key="badgeColor" name="BingeBlue"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GH3-i6-rpN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="BingeBlue"/>
                     </navigationBar>
                     <connections>
                         <segue destination="tvA-9c-SMh" kind="relationship" relationship="rootViewController" id="Prm-JT-bO2"/>
@@ -221,6 +225,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="BingeBlue"/>
                     </tabBar>
                     <connections>
                         <segue destination="ogE-9h-CFL" kind="relationship" relationship="viewControllers" id="xYR-pE-WIm"/>
@@ -235,11 +240,14 @@
         <scene sceneID="PEI-uU-c5e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogE-9h-CFL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List View" id="LUp-Ea-3xw"/>
+                    <tabBarItem key="tabBarItem" title="List View" id="LUp-Ea-3xw">
+                        <color key="badgeColor" name="BingeBlue"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kSz-3L-skS">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="BingeBlue"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -251,6 +259,11 @@
             <point key="canvasLocation" x="301.60000000000002" y="289.20539730134936"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="BingeBlue">
+            <color red="0.058823529411764705" green="0.086274509803921567" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kbW-1c-yeq"/>
     </inferredMetricsTieBreakers>

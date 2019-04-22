@@ -36,7 +36,7 @@ class BarListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.view.backgroundColor = UIColor.init(named:"BingeWhite")
     }
     
     func pullData() {

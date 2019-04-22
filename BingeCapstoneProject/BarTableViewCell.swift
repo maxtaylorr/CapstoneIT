@@ -16,6 +16,7 @@ class BarTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = UIColor.init(named: "BingeWhite")
         // Initialization code
     }
 
