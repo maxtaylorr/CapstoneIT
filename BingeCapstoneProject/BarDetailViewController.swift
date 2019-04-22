@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class BarDetailViewController: UIViewController {
+class BarDetailViewController: UIViewController, MKMapViewDelegate {
 
     // Bar passed by selection from map or table
     var passedBar: Bar?
@@ -47,6 +47,16 @@ class BarDetailViewController: UIViewController {
         
         focusMapView(bar)
         addPin(bar)
+        barMapView.delegate = self
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        if let annotationTitle = view.annotation?.title
+        {
+            print("User tapped on annotation with title: \(annotationTitle!)")
+            openMapForPlace()
+        }
     }
     
     func addPin(_ bar: Bar) {
