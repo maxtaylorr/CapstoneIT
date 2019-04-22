@@ -34,44 +34,6 @@ class Bar {
         self.imageURL = imageURL
         self.deals = deals
     }
-    
-//    class func fetchAllBars() -> [Bar] {
-//        
-//        var bars = [Bar]()
-//        
-//        let settings = FirestoreSettings()
-//        Firestore.firestore().settings = settings
-//        db = Firestore.firestore()
-//        
-//        db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    
-//                    let name = document.data()["name"] as! String
-//                    let hours = document.data()["hoursOpen"] as! String
-//                    let deals = document.data()["deals"] as? Array ?? [""]
-//                    
-//                    var lat: Double = 0.0
-//                    var lon: Double = 0.0
-//                    if let coords = document.get("coords") {
-//                        let point = coords as! GeoPoint
-//                        lat = point.latitude
-//                        lon = point.longitude
-//                    }
-//                    
-//                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, deals: [])
-//                    
-//                    bars.append(bar)
-//                    print(bar.name)
-//                }
-//            }
-//        }
-//        
-//        return bars
-//    }
-    
 }
 
 class Deal {

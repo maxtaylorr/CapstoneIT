@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Kingfisher
 
 class BarDetailViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class BarDetailViewController: UIViewController {
     @IBOutlet weak var barTitleLabel: UILabel!
     @IBOutlet weak var barInfoTextView: UITextView!
     @IBOutlet weak var barMapView: MKMapView!
+    @IBOutlet weak var barImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,7 @@ class BarDetailViewController: UIViewController {
         
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.openingTime
+        barImage.kf.setImage(with: URL(string: bar.imageURL))
         
         var dealsString: String = ""
         

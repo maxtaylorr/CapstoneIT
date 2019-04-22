@@ -155,6 +155,7 @@
                     </view>
                     <connections>
                         <outlet property="barDescLabel" destination="H4B-0I-V79" id="xdI-20-Bdl"/>
+                        <outlet property="barImage" destination="opY-Yl-kTR" id="UF9-uo-IhY"/>
                         <outlet property="barInfoTextView" destination="shK-IR-lon" id="gGb-LG-xPZ"/>
                         <outlet property="barMapView" destination="r4N-0B-rla" id="IJ6-Br-n60"/>
                         <outlet property="barTitleLabel" destination="rQj-cU-3cg" id="ThZ-nJ-f4E"/>
