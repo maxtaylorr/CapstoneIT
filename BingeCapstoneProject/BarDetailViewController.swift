@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import Kingfisher
 
-class BarDetailViewController: UIViewController {
+class BarDetailViewController: UIViewController, MKMapViewDelegate {
 
     // Bar passed by selection from map or table
     var passedBar: Bar?
@@ -18,6 +19,7 @@ class BarDetailViewController: UIViewController {
     @IBOutlet weak var barTitleLabel: UILabel!
     @IBOutlet weak var barInfoTextView: UITextView!
     @IBOutlet weak var barMapView: MKMapView!
+    @IBOutlet weak var barImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,7 @@ class BarDetailViewController: UIViewController {
         
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.openingTime
+        barImage.kf.setImage(with: URL(string: bar.imageURL))
         
         var dealsString: String = ""
         
@@ -44,6 +47,16 @@ class BarDetailViewController: UIViewController {
         
         focusMapView(bar)
         addPin(bar)
+        barMapView.delegate = self
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        if let annotationTitle = view.annotation?.title
+        {
+            print("User tapped on annotation with title: \(annotationTitle!)")
+            openMapForPlace()
+        }
     }
     
     func addPin(_ bar: Bar) {
