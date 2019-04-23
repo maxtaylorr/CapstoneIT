@@ -10,6 +10,7 @@
 		0D5DFA55225CD1EF0058FD19 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */; };
 		0D5DFA57225CD4450058FD19 /* BarPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */; };
 		21C765BB2BE4E997F43BA14C /* Pods_BingeCapstoneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */; };
+		27504070226E566C008A9814 /* rockwebi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2750406F226E566C008A9814 /* rockwebi.ttf */; };
 		5B35CB982238A7B900F2ECB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */; };
 		5B42C9B4223AA29A00438B20 /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42C9B3223AA29A00438B20 /* Bars.swift */; };
 		5BE03DA022190E57006B2603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03D9F22190E57006B2603 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarPointAnnotation.swift; sourceTree = "<group>"; };
+		2750406F226E566C008A9814 /* rockwebi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rockwebi.ttf; path = "../../../../Downloads/Rockwell-BoldItalic/rockwebi.ttf"; sourceTree = "<group>"; };
 		5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B42C9B3223AA29A00438B20 /* Bars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		5BE03D9C22190E57006B2603 /* BingeCapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingeCapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,9 +63,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2750406E226E5635008A9814 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2750406F226E566C008A9814 /* rockwebi.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		5BE03D9322190E57006B2603 = {
 			isa = PBXGroup;
 			children = (
+				2750406E226E5635008A9814 /* Fonts */,
 				5BE03D9E22190E57006B2603 /* BingeCapstoneProject */,
 				5BE03D9D22190E57006B2603 /* Products */,
 				0F7DCFC1F2F9D72F6851703A /* Pods */,
@@ -169,6 +180,7 @@
 			files = (
 				5BE03DAA22190E59006B2603 /* LaunchScreen.storyboard in Resources */,
 				5B35CB982238A7B900F2ECB7 /* GoogleService-Info.plist in Resources */,
+				27504070226E566C008A9814 /* rockwebi.ttf in Resources */,
 				5BE03DA722190E59006B2603 /* Assets.xcassets in Resources */,
 				5BE03DA522190E57006B2603 /* Main.storyboard in Resources */,
 			);
@@ -396,7 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BNNX2R43X;
+				DEVELOPMENT_TEAM = MGJ5FD3ENM;
 				INFOPLIST_FILE = BingeCapstoneProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -415,7 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2BNNX2R43X;
+				DEVELOPMENT_TEAM = MGJ5FD3ENM;
 				INFOPLIST_FILE = BingeCapstoneProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
