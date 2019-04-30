@@ -12,9 +12,6 @@ import Firebase
 import FirebaseFirestore
 //Data Model for Bar Lists
 
-var db: Firestore!
-
-
 class Bar {
     
     let name: String
