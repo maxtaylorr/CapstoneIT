@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bars-->
+        <!--Bars and Hours-->
         <scene sceneID="8pB-dr-7VR">
             <objects>
                 <viewController id="tuZ-qh-tYO" customClass="BarListViewController" customModule="BingeCapstoneProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,7 +84,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wM9-LU-iT1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bars" id="gnh-iT-G6s"/>
+                    <navigationItem key="navigationItem" title="Bars and Hours" id="gnh-iT-G6s"/>
                     <connections>
                         <outlet property="barsTableView" destination="VtX-si-MPq" id="96V-XI-rqh"/>
                     </connections>
@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="1010" y="289"/>
         </scene>
-        <!--Bar Detail View Controller-->
+        <!--Specials-->
         <scene sceneID="SH9-g4-cWP">
             <objects>
                 <viewController id="khR-kP-foJ" customClass="BarDetailViewController" customModule="BingeCapstoneProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,18 +127,26 @@
                                 </constraints>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="shK-IR-lon">
-                                <rect key="frame" x="15" y="222" width="345" height="162"/>
+                                <rect key="frame" x="15" y="257" width="345" height="127"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Deals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al0-iR-kgh">
+                                <rect key="frame" x="16" y="228" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="BingeBlue"/>
                         <constraints>
                             <constraint firstItem="Ekh-E6-LFT" firstAttribute="trailing" secondItem="H4B-0I-V79" secondAttribute="trailing" constant="16" id="0t2-9q-HCp"/>
+                            <constraint firstItem="al0-iR-kgh" firstAttribute="top" secondItem="opY-Yl-kTR" secondAttribute="bottom" constant="21" id="6TI-fL-vmE"/>
                             <constraint firstItem="Ekh-E6-LFT" firstAttribute="trailing" secondItem="r4N-0B-rla" secondAttribute="trailing" constant="15" id="7kn-uY-DwZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="al0-iR-kgh" secondAttribute="trailing" id="8fW-Nz-3px"/>
                             <constraint firstItem="opY-Yl-kTR" firstAttribute="leading" secondItem="Ekh-E6-LFT" secondAttribute="leading" constant="15" id="94d-yO-Ipa"/>
                             <constraint firstItem="r4N-0B-rla" firstAttribute="leading" secondItem="Ekh-E6-LFT" secondAttribute="leading" constant="15" id="9aU-5d-L5V"/>
                             <constraint firstItem="Ekh-E6-LFT" firstAttribute="trailing" secondItem="rQj-cU-3cg" secondAttribute="trailing" constant="15" id="AeP-vD-a7e"/>
@@ -151,10 +159,12 @@
                             <constraint firstItem="Ekh-E6-LFT" firstAttribute="trailing" secondItem="shK-IR-lon" secondAttribute="trailing" constant="15" id="iIB-lw-r7I"/>
                             <constraint firstItem="H4B-0I-V79" firstAttribute="top" secondItem="rQj-cU-3cg" secondAttribute="bottom" constant="10" id="jeS-Bg-wx3"/>
                             <constraint firstItem="rQj-cU-3cg" firstAttribute="top" secondItem="Ekh-E6-LFT" secondAttribute="top" constant="50" id="mJA-R6-1Qf"/>
-                            <constraint firstItem="shK-IR-lon" firstAttribute="top" secondItem="opY-Yl-kTR" secondAttribute="bottom" constant="15" id="vt1-8N-lxC"/>
+                            <constraint firstItem="al0-iR-kgh" firstAttribute="leading" secondItem="mQM-A3-UlG" secondAttribute="leadingMargin" id="n1V-oM-4Lw"/>
+                            <constraint firstItem="shK-IR-lon" firstAttribute="top" secondItem="opY-Yl-kTR" secondAttribute="bottom" constant="50" id="vt1-8N-lxC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ekh-E6-LFT"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Specials" id="OWS-9Z-Ug8"/>
                     <connections>
                         <outlet property="barDescLabel" destination="H4B-0I-V79" id="xdI-20-Bdl"/>
                         <outlet property="barImage" destination="opY-Yl-kTR" id="UF9-uo-IhY"/>
@@ -167,7 +177,7 @@
             </objects>
             <point key="canvasLocation" x="1709.5999999999999" y="288.30584707646182"/>
         </scene>
-        <!--Bars-->
+        <!--Bars On Map-->
         <scene sceneID="uwQ-J4-MaE">
             <objects>
                 <viewController id="tvA-9c-SMh" customClass="MapViewController" customModule="BingeCapstoneProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -189,7 +199,7 @@
                         <viewLayoutGuide key="safeArea" id="APs-Cr-Lqs"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map View" id="LOm-YL-1UT"/>
-                    <navigationItem key="navigationItem" title="Bars" id="5Gy-hi-KMq"/>
+                    <navigationItem key="navigationItem" title="Bars On Map" id="5Gy-hi-KMq"/>
                     <connections>
                         <outlet property="mapView" destination="X6L-ze-nTD" id="Co0-MW-KuM"/>
                         <segue destination="khR-kP-foJ" kind="show" identifier="showDetailFromMap" id="kbW-1c-yeq"/>
@@ -199,11 +209,11 @@
             </objects>
             <point key="canvasLocation" x="1348" y="-591"/>
         </scene>
-        <!--Map View-->
+        <!--Bar Map-->
         <scene sceneID="BgQ-Zv-YXj">
             <objects>
                 <navigationController id="HK4-Mb-37t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map View" id="UFP-iA-QyK">
+                    <tabBarItem key="tabBarItem" title="Bar Map" image="mapImage" id="UFP-iA-QyK">
                         <color key="badgeColor" name="BingeBlue"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GH3-i6-rpN">
@@ -238,11 +248,11 @@
             </objects>
             <point key="canvasLocation" x="-651" y="-43"/>
         </scene>
-        <!--List View-->
+        <!--Bar List-->
         <scene sceneID="PEI-uU-c5e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ogE-9h-CFL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List View" id="LUp-Ea-3xw">
+                    <tabBarItem key="tabBarItem" title="Bar List" image="listImage" id="LUp-Ea-3xw">
                         <color key="badgeColor" name="BingeBlue"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -262,6 +272,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="listImage" width="25" height="25"/>
+        <image name="mapImage" width="25" height="25"/>
         <namedColor name="BingeBlue">
             <color red="0.058823529411764705" green="0.086274509803921567" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -270,6 +282,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="adR-6M-Lyb"/>
+        <segue reference="kbW-1c-yeq"/>
     </inferredMetricsTieBreakers>
 </document>

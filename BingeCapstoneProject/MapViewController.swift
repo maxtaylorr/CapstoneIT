@@ -18,7 +18,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let longitudeDelta = 0.02
     
     var db: Firestore!
-    
     // Map View
     @IBOutlet weak var mapView: MKMapView!
     
