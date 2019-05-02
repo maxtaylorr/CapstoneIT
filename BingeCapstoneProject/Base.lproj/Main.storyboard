@@ -175,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSK-Jr-ohU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709.5999999999999" y="288.30584707646182"/>
+            <point key="canvasLocation" x="2033" y="289"/>
         </scene>
         <!--Bars On Map-->
         <scene sceneID="uwQ-J4-MaE">
@@ -198,7 +198,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="APs-Cr-Lqs"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map View" id="LOm-YL-1UT"/>
+                    <tabBarItem key="tabBarItem" title="Map View" image="mapImage" id="LOm-YL-1UT"/>
                     <navigationItem key="navigationItem" title="Bars On Map" id="5Gy-hi-KMq"/>
                     <connections>
                         <outlet property="mapView" destination="X6L-ze-nTD" id="Co0-MW-KuM"/>
@@ -282,6 +282,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kbW-1c-yeq"/>
+        <segue reference="adR-6M-Lyb"/>
     </inferredMetricsTieBreakers>
 </document>
