@@ -9,8 +9,10 @@ import Firebase
 import FirebaseFirestore
 import Kingfisher
 
-class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+SideView {
     
+    var directionToRoot: PushTransitionDirection = .left
     var db: Firestore!
     
     // table view iboutlet

@@ -10,8 +10,26 @@ import UIKit
 import MapKit
 import FirebaseFirestore
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+extension MapViewController{
+    func setupMapViewLayer(){
+        let mapShape = CAShapeLayer()
+        view.layer.addSublayer(mapShape)
+        mapShape.strokeColor = UIColor.red.cgColor
+        mapShape.fillColor = UIColor.blue.cgColor
+        mapShape.lineWidth = .init(5.0)
+        mapShape.position = .init(x: 0.0, y: 0.0)
+        
+//        let mapClipBorder = CGMutablePath()
+//        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+//        mapShape.path = mapClipBorder
+    }
+}
 
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
+SideView {
+    
+    var directionToRoot: PushTransitionDirection = .left
+    
     let centerLatitude = 38.948
     let centerLongitude = -92.328
     let latitudeDelta = 0.02
@@ -42,6 +60,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         db = Firestore.firestore()
         
         pullData()
+        
+        setupMapViewLayer()
         
         // create array of bars
 
@@ -86,13 +106,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func makePointOnMap(_ bar: Bar) {
-
         let point = BarPointAnnotation()
         point.bar = bar
         point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
         point.title = bar.name
         mapView.addAnnotation(point)
-        
     }
     
     // perform segue when tapping callout info on pin
@@ -103,7 +121,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-        func pullData(){
+    func pullData(){
             db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
                
                 var bars = [Bar]()
@@ -151,7 +169,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                             
                         bars.append(bar)
                         self.makePointOnMap(bar)
-
                     }
                 }
             }
@@ -164,8 +181,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func getCurrentLocation()
-    {
+    func getCurrentLocation(){
         self.locationManager.requestAlwaysAuthorization()
         
         // Use location in background

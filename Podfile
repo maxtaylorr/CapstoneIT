@@ -11,5 +11,7 @@ target 'BingeCapstoneProject' do
 
   # Pods for BingeCapstoneProject
   pod 'Kingfisher', '~> 5.0'
+  # Slanted View library
+  pod 'CollectionViewSlantedLayout', '~> 3.1'
   
 end
