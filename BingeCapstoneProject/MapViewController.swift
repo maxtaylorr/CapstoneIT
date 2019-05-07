@@ -11,7 +11,6 @@ import MapKit
 import FirebaseFirestore
 
 
-
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,BarDataUser,
 SideView {
     
@@ -39,25 +38,20 @@ SideView {
             barData = BarDatabaseController()
         }
         
-//        if let selected = barData.selectedBar{
-//            selectedAnnotation = BarPointAnnotation(selected)
-//        }
+        barData.updateBarList()
         
-        getCurrentLocation()
-        createMap()
-        updateMapPins()
-        setupMapViewLayer()
+        let barList = Array(barData.bars)
+        print(barList.count)
         
-//        for bar in barData.bars{
-//            self.makePointOnMap(bar)
-//        }
-        
-        // create array of bars
+        self.getCurrentLocation()
+        self.createMap()
+        self.updateMapPins(barList)
+        self.setupMapViewLayer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getCurrentLocation()
-        updateMapPins()
+//        updateMapPins()
     }
     
     // create pins on map
@@ -84,9 +78,9 @@ SideView {
         return view
     }
     
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        <#code#>
-//    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
+    }
     
     // pass Bar to BarDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -145,8 +139,8 @@ extension MapViewController{
         self.mapView.showsUserLocation = true
     }
     
-    func updateMapPins(){
-        for bar in barData.bars{
+    func updateMapPins(_ bars:Array<Bar>){
+        for bar in bars{
             makePointOnMap(bar)
         }
     }
@@ -167,7 +161,8 @@ extension MapViewController{
     
     func makePointOnMap(_ bar: Bar) {
         let point = BarPointAnnotation(bar)
-        selectedAnnotation = point
-        mapView.addAnnotation(point)
+        print("Adding point \(point.bar.name)")
+//        selectedAnnotation = point
+        self.mapView.addAnnotation(point)
     }
 }

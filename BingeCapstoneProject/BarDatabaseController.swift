@@ -54,22 +54,34 @@ class BarDatabaseController{
     
     let dataBaseURL = "bars_04_02_2019"
     var db: Firestore!
-    var bars = Set<Bar>()
+    var bars:Set<Bar>
     var selectedBar:Bar?
     
     init() {
+        bars = Set<Bar>()
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
-        pullData()
     }
     
-    func pullData(){
+    func updateBarList(){
+        let getBars = pullData()
+        for bar in getBars(){
+            self.bars.insert(bar)
+        }
+    }
+    
+    func pullData()->()->Array<Bar>{
         //Clear bar set of all entries
         bars.removeAll()
+        var addedBars = [Bar]()
+        
+        func getBars()->Array<Bar> {
+            return addedBars
+        }
         
         //Load bars for database and create structs from data
-        db.collection(dataBaseURL).getDocuments() { (querySnapshot, err) in
+        db.collection(dataBaseURL).getDocuments(){ (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -107,16 +119,19 @@ class BarDatabaseController{
                             dealHours = deal
                         }
                     }
+                    
                     dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
                     dealsStringArray = []
                     
                     let bar = Bar(name: name,id: id ,date: Date(),coordinate: location, hours: hours, imageURL: imageURL, deals: dealsArray)
                     
-//                    print("Adding bar \(bar.name)")
-                    self.bars.insert(bar)
+                    print("Adding bar \(bar.name)")
+                    addedBars.append(bar)
                 }
             }
         }
+        print(addedBars.count)
+        return getBars
     }
 
     
