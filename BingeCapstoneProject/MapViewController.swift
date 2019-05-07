@@ -48,6 +48,10 @@ SideView {
         updateMapPins()
         setupMapViewLayer()
         
+        for bar in barData.bars{
+            self.makePointOnMap(bar)
+        }
+        
         // create array of bars
     }
     
@@ -59,7 +63,6 @@ SideView {
     // create pins on map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let view: MKPinAnnotationView
-        let selectedAnnotation =
         
         if (annotation.isKind(of: MKUserLocation.self)){
             return nil
