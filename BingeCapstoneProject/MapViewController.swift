@@ -39,18 +39,18 @@ SideView {
             barData = BarDatabaseController()
         }
         
-        if let selected = barData.selectedBar{
-            selectedAnnotation = BarPointAnnotation(selected)
-        }
+//        if let selected = barData.selectedBar{
+//            selectedAnnotation = BarPointAnnotation(selected)
+//        }
         
         getCurrentLocation()
         createMap()
         updateMapPins()
         setupMapViewLayer()
         
-        for bar in barData.bars{
-            self.makePointOnMap(bar)
-        }
+//        for bar in barData.bars{
+//            self.makePointOnMap(bar)
+//        }
         
         // create array of bars
     }
@@ -77,7 +77,7 @@ SideView {
             view.isUserInteractionEnabled = true
             view.pinTintColor = .black
             view.canShowCallout = true
-            view.animatesDrop = true
+            view.animatesDrop = false
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
 //            view.leftCalloutAccessoryView = UIImage()
         }
@@ -114,6 +114,7 @@ class BarPointAnnotation:MKPointAnnotation{
         super.init()
         self.coordinate.longitude = bar.coordinate.longitude
         self.coordinate.latitude = bar.coordinate.latitude
+        self.title = bar.name
     }
 }
 
@@ -166,6 +167,7 @@ extension MapViewController{
     
     func makePointOnMap(_ bar: Bar) {
         let point = BarPointAnnotation(bar)
+        selectedAnnotation = point
         mapView.addAnnotation(point)
     }
 }
