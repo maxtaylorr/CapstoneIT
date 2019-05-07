@@ -9,29 +9,22 @@ import Firebase
 import FirebaseFirestore
 import Kingfisher
 
-class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BarDataUser,
 SideView {
-    
+    var barData: BarDatabaseController!
+    var barList:Array<Bar> = []
     var directionToRoot: PushTransitionDirection = .left
-    var db: Firestore!
     
     // table view iboutlet
     @IBOutlet weak var barsTableView: UITableView!
     
-    // bars
-    var bars = [Bar]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        barList = Array(barData.bars)
         barsTableView.dataSource = self
         barsTableView.delegate = self
         
-        let settings = FirestoreSettings()
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        
-        pullData()
         DispatchQueue.main.async {
             self.barsTableView.reloadData()
         }
@@ -41,71 +34,17 @@ SideView {
         self.view.backgroundColor = UIColor.init(named:"BingeWhite")
     }
     
-    func pullData() {
-        db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-
-                    let name = document.data()["name"] as! String
-                    let imageURL = document.data()["imageURL"] as! String
-                    let hours = document.data()["hoursOpen"] as! String
-                    let deals = document.data()["deals"] as? Array ?? [""]
-
-                    var lat: Double = 0.0
-                    var lon: Double = 0.0
-                    if let coords = document.get("coords") {
-                        let point = coords as! GeoPoint
-                        lat = point.latitude
-                        lon = point.longitude
-                    }
-
-                    var dealsArray: [Deal] = []
-                    
-                    let trigger = CharacterSet(charactersIn: "$")
-                    var dealHours: String = ""
-                    var dealsStringArray: [String] = []
-                    
-                    for deal in deals {
-                        if let test = deal.rangeOfCharacter(from: trigger) {
-                            dealsStringArray.append(deal)
-                            
-                        } else {
-                            if dealsStringArray.count > 0 {
-                                dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
-                                dealsStringArray = []
-                            }
-                            
-                            dealHours = deal
-                        }
-                    }
-                    dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
-                    dealsStringArray = []
-                    
-                    let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: dealsArray)
-                    
-                    self.bars.append(bar)
-                }
-            }
-            DispatchQueue.main.async {
-                self.barsTableView.reloadData()
-            }
-        }
-        
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bars.count
+        return barList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "barCell"
-        let bar = bars[indexPath.row]
+        let bar = barList[indexPath.row]
         let url = URL(string: bar.imageURL)
         //let processor = RoundCornerImageProcessor(cornerRadius: 20)
         //let processor = CroppingImageProcessor(size: CGSize(width: 100, height: 100), anchor: CGPoint(x: 0.5, y: 0.5))
@@ -113,7 +52,7 @@ SideView {
         let cell = barsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? BarTableViewCell {
             cell.barTitleLabel.text = bar.name
-            cell.BarDescLabel.text = bar.openingTime
+            cell.BarDescLabel.text = bar.hours
             cell.barImage.kf.setImage(with: url)
         }
         return cell
@@ -121,7 +60,8 @@ SideView {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
-            destination.passedBar = bars[selectedRow.row]
+            barData.selectedBar = barList[selectedRow.row]
+            destination.barData = barData
         }
     }
 

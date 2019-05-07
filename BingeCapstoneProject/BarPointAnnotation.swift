@@ -9,6 +9,6 @@
 import UIKit
 import MapKit
 
-class BarPointAnnotation: MKPointAnnotation {
-    var bar: Bar?
-}
+//class BarPointAnnotation: MKPointAnnotation {
+//    var bar: Bar?
+//}

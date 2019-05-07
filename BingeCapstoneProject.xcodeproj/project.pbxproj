@@ -14,9 +14,9 @@
 		276B1EFD227F7C8900FDB7BF /* SideBySidePushInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */; };
 		276B1EFE227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */; };
 		276B1F04227FC8A300FDB7BF /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1F03227FC8A300FDB7BF /* BarCollectionViewCell.swift */; };
+		27DC09CE2280DF9200E4E1EC /* BarDatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DC09CD2280DF9200E4E1EC /* BarDatabaseController.swift */; };
 		27E9424D2278A37900C3E1C7 /* rockwebi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E9424C2278A37900C3E1C7 /* rockwebi.ttf */; };
 		5B35CB982238A7B900F2ECB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */; };
-		5B42C9B4223AA29A00438B20 /* Bars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B42C9B3223AA29A00438B20 /* Bars.swift */; };
 		5BE03DA022190E57006B2603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03D9F22190E57006B2603 /* AppDelegate.swift */; };
 		5BE03DA522190E57006B2603 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA322190E57006B2603 /* Main.storyboard */; };
 		5BE03DA722190E59006B2603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA622190E59006B2603 /* Assets.xcassets */; };
@@ -33,9 +33,9 @@
 		276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushTransitionAnimator.swift; sourceTree = "<group>"; };
 		276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushInteractor.swift; sourceTree = "<group>"; };
 		276B1F03227FC8A300FDB7BF /* BarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewCell.swift; sourceTree = "<group>"; };
+		27DC09CD2280DF9200E4E1EC /* BarDatabaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDatabaseController.swift; sourceTree = "<group>"; };
 		27E9424C2278A37900C3E1C7 /* rockwebi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rockwebi.ttf; sourceTree = "<group>"; };
 		5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5B42C9B3223AA29A00438B20 /* Bars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bars.swift; sourceTree = "<group>"; };
 		5BE03D9C22190E57006B2603 /* BingeCapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BingeCapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE03D9F22190E57006B2603 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BE03DA422190E57006B2603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,16 +103,16 @@
 			children = (
 				5BE03DA822190E59006B2603 /* LaunchScreen.storyboard */,
 				5BE03DA322190E57006B2603 /* Main.storyboard */,
+				27DC09CD2280DF9200E4E1EC /* BarDatabaseController.swift */,
 				5BE03D9F22190E57006B2603 /* AppDelegate.swift */,
 				0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */,
+				5BE03DB522191569006B2603 /* BarDetailViewController.swift */,
 				5BE03DB322191550006B2603 /* BarListViewController.swift */,
 				5BE03DA622190E59006B2603 /* Assets.xcassets */,
 				0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */,
 				5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */,
 				5BE03DAB22190E59006B2603 /* Info.plist */,
 				5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */,
-				5BE03DB522191569006B2603 /* BarDetailViewController.swift */,
-				5B42C9B3223AA29A00438B20 /* Bars.swift */,
 				276B1F03227FC8A300FDB7BF /* BarCollectionViewCell.swift */,
 				276B1EF9227F7C8300FDB7BF /* BaseNC.swift */,
 				276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */,
@@ -274,8 +274,8 @@
 				5BE03DA022190E57006B2603 /* AppDelegate.swift in Sources */,
 				0D5DFA55225CD1EF0058FD19 /* MapViewController.swift in Sources */,
 				5BE03DB2221914EF006B2603 /* BarTableViewCell.swift in Sources */,
-				5B42C9B4223AA29A00438B20 /* Bars.swift in Sources */,
 				5BE03DB422191550006B2603 /* BarListViewController.swift in Sources */,
+				27DC09CE2280DF9200E4E1EC /* BarDatabaseController.swift in Sources */,
 				0D5DFA57225CD4450058FD19 /* BarPointAnnotation.swift in Sources */,
 				5BE03DB622191569006B2603 /* BarDetailViewController.swift in Sources */,
 				276B1F04227FC8A300FDB7BF /* BarCollectionViewCell.swift in Sources */,
