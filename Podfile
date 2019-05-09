@@ -7,7 +7,10 @@ target 'BingeCapstoneProject' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
+  
   use_frameworks!
+
+  
 
   # Pods for BingeCapstoneProject
   pod 'Kingfisher', '~> 5.0'

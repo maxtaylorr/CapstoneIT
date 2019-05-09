@@ -28,20 +28,19 @@ SideView {
     @IBOutlet weak var mapView: MKMapView!
     let annotationIdentifier = "barIdentifier"
     var locationManager = CLLocationManager()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
-        
         if(barData == nil){
             barData = BarDatabaseController()
         }
-        
-        barData.updateBarList()
+        mapView.delegate = self
+
+//        barData.pullData()
         
         let barList = Array(barData.bars)
-        print(barList.count)
+//        print(barList.count)
         
         self.getCurrentLocation()
         self.createMap()
