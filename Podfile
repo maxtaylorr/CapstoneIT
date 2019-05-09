@@ -10,8 +10,6 @@ target 'BingeCapstoneProject' do
   
   use_frameworks!
 
-  
-
   # Pods for BingeCapstoneProject
   pod 'Kingfisher', '~> 5.0'
   # Slanted View library
