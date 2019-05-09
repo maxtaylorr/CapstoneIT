@@ -240,6 +240,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6L-ze-nTD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tvA-9c-SMh" id="cgp-nX-yTQ"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -369,7 +372,7 @@
                                 <rect key="frame" x="19" y="64" width="337.5" height="571"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wsH-9o-aMp" userLabel="BarInfoCollectionView">
-                                        <rect key="frame" x="-19" y="441" width="375" height="120"/>
+                                        <rect key="frame" x="-27.5" y="441" width="392" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="poL-Fp-JPK">
                                             <size key="itemSize" width="50" height="50"/>
@@ -397,7 +400,7 @@
                                     <constraint firstAttribute="bottom" secondItem="wsH-9o-aMp" secondAttribute="bottom" constant="10" id="5lh-gg-xVp"/>
                                     <constraint firstItem="wsH-9o-aMp" firstAttribute="centerX" secondItem="ZZP-Lm-9uc" secondAttribute="centerX" id="AiG-Mt-fj1"/>
                                     <constraint firstItem="ZZP-Lm-9uc" firstAttribute="centerX" secondItem="Ofd-1k-MP5" secondAttribute="centerX" id="Ew0-sK-Wep"/>
-                                    <constraint firstItem="wsH-9o-aMp" firstAttribute="width" secondItem="Ofd-1k-MP5" secondAttribute="width" constant="37.5" id="Imt-ek-Mf1"/>
+                                    <constraint firstItem="wsH-9o-aMp" firstAttribute="width" secondItem="Ofd-1k-MP5" secondAttribute="width" multiplier="1.05" constant="37.5" id="Imt-ek-Mf1"/>
                                     <constraint firstItem="ZZP-Lm-9uc" firstAttribute="width" secondItem="Ofd-1k-MP5" secondAttribute="width" id="PSW-8d-KCC"/>
                                     <constraint firstAttribute="bottom" secondItem="ZZP-Lm-9uc" secondAttribute="bottom" id="xkj-PF-lpt"/>
                                 </constraints>
@@ -433,6 +436,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CLa-hM-Uax"/>
+        <segue reference="kbW-1c-yeq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,9 +9,9 @@ import Firebase
 import FirebaseFirestore
 import Kingfisher
 
-class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BarDataUser,
+class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
 SideView {
-    var barData: BarDatabaseController!
+    var barData: BarDatabaseController?
     var barList:Array<Bar> = []
     var directionToRoot: PushTransitionDirection = .left
     
@@ -21,7 +21,7 @@ SideView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        barList = Array(barData.bars)
+//        barList = Array(barData.bars?)
         barsTableView.dataSource = self
         barsTableView.delegate = self
         
@@ -60,7 +60,7 @@ SideView {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
-            barData.selectedBar = barList[selectedRow.row]
+            barData?.selectedBar = barList[selectedRow.row]
             destination.barData = barData
         }
     }

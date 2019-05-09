@@ -41,46 +41,30 @@ struct Coordinate:Hashable,Codable{
     var longitude:Double
 }
 
-protocol BarDataUser {
-    var barData:BarDatabaseController!{get set}
-}
-
-
-class BarDatabaseController:BarDataService{
+class BarDatabaseController{
     /*
      Database Instance
      Bars Currently Loaded
      */
     
     let databaseUrl = "bars_04_02_2019"
-    var db: Firestore!
-    var bars:Set<Bar>
+    let db: Firestore!
+    var bars:Set<Bar>?
     var selectedBar:Bar?
     
     init() {
-        bars = Set<Bar>()
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
-        fetchAllBars(){ completeList in
-            print(completeList.count)
-        }
     }
     
-//    func updateBarList(){
-//        let getBars = pullData()
-//        for bar in getBars(){
-//            self.bars.insert(bar)
-//        }
-//    }
-    
     func pullData(){
-        //Clear bar set of all entries
-//        bars.removeAll()
-        //Load bars for database and create structs from data
-        db.collection(databaseUrl).getDocuments(){[weak self] (querySnapshot, err) in
+        db.collection(databaseUrl).getDocuments(){[weak self](querySnapshot, err) in
+            var barList = Set<Bar>()
+            
             if let err = err {
                 print("Error getting documents: \(err)")
+                return
             } else {
                 for document in querySnapshot!.documents {
                     let name = document.data()["name"] as! String
@@ -122,81 +106,16 @@ class BarDatabaseController:BarDataService{
                     
                     let bar = Bar(name: name,id: id ,date: Date(),coordinate: location, hours: hours, imageURL: imageURL, deals: dealsArray)
                     
-                    print("Adding bar \(bar.name)")
-                    self?.bars.insert(bar)
-                    print(self?.bars.count ?? 0.0)
+                    barList.insert(bar)
                 }
+                self?.setBars(barList)
             }
         }
-//        print(self.bars.count)
+    }
+    
+    func setBars(_ barList:Set<Bar>){
+        let copy = barList
+        self.bars = copy
     }
 }
 
-protocol BarDataService {}
-
-extension BarDataService {
-    
-    var firestore: Firestore { return Firestore.firestore() }
-    
-    func fetchBar(withId id: String, completion: @escaping (Bar?) -> Void){
-        
-        let docRef = firestore.collection("databaseUrl").document(id)
-        docRef.getDocument { docSnap, error in
-            
-            guard error == nil, let doc = docSnap, doc.exists == true else {
-                print(error)
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            
-            //Make a mutable copy of the NSDictionary
-            var dict = doc.data()
-            for (key, value) in dict! {
-                
-                //We need to check if the value is a Date (timestamp) and parse it as a string, since you cant serialize a Date. This might be true for other types you serverside.
-                if let value = value as? Date {
-                    let formatter = DateFormatter()
-                    dict?[key] = formatter.string(from: value)
-                }
-            }
-            //Serialize the Dictionary into a JSON Data representation, then decode it using the Decoder().
-            
-            if let data = try?  JSONSerialization.data(withJSONObject: dict!, options: []) {
-                let bar = try? decoder.decode(Bar.self, from: data)
-                completion(bar)
-            }
-        }
-    }
-    
-    func fetchAllBars(completion: @escaping (Set<Bar>) -> Void){
-        var list = Set<Bar>()
-        firestore.collection("databaseUrl").getDocuments()
-        { docSnap, error in
-            
-            guard error == nil, let doc = docSnap else {
-                print(error!)
-                return
-            }
-            
-            for document in doc.documents {
-                var dict = document.data()
-                for (key, value) in dict {
-                    if let value = value as? Date {
-                        let formatter = DateFormatter()
-                        dict[key] = formatter.string(from: value)
-                    }
-                }
-                
-            let decoder = JSONDecoder()
-            //Serialize the Dictionary into a JSON Data representation, then decode it using the Decoder().
-            
-            if let data = try?  JSONSerialization.data(withJSONObject: dict, options: []) {
-                let bar = try? decoder.decode(Bar.self, from: data)
-                list.insert(bar!)
-            }
-        }
-            completion(list)
-    }
-}
-}

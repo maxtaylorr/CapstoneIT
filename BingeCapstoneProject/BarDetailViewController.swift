@@ -10,9 +10,9 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class BarDetailViewController: UIViewController, MKMapViewDelegate,BarDataUser {
+class BarDetailViewController: UIViewController, MKMapViewDelegate {
     
-    var barData: BarDatabaseController!
+    var barData: BarDatabaseController?
     
     // Bar passed by selection from map or table
     @IBOutlet weak var barDescLabel: UILabel!
@@ -23,12 +23,12 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate,BarDataUser {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let selectedBar = barData.selectedBar!
-        
-        updateLabelValues(selectedBar)
-        updateDealList(selectedBar)
-        focusMapView(selectedBar)
-        addPin(selectedBar)
+//        let selectedBar = barData?.selectedBar!
+//
+//        updateLabelValues(selectedBar)
+//        updateDealList(selectedBar)
+//        focusMapView(selectedBar)
+//        addPin(selectedBar)
         
         barMapView.delegate = self
     }

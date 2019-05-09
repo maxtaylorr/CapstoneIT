@@ -11,10 +11,10 @@ import MapKit
 import FirebaseFirestore
 
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,BarDataUser,
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
 SideView {
     
-    var barData: BarDatabaseController!
+//    var barData: BarDatabaseController?
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
 
@@ -31,26 +31,19 @@ SideView {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        if(barData == nil){
-            barData = BarDatabaseController()
-        }
         mapView.delegate = self
-
-//        barData.pullData()
-        
-        let barList = Array(barData.bars)
-//        print(barList.count)
         
         self.getCurrentLocation()
         self.createMap()
-        self.updateMapPins(barList)
         self.setupMapViewLayer()
+        if let bars = barData.bars{
+            updateMapPins(Array(bars))
+        }
+        super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getCurrentLocation()
-//        updateMapPins()
     }
     
     // create pins on map
@@ -86,7 +79,7 @@ SideView {
         if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation {
             let bar = annotation.bar
             barData.selectedBar = bar
-            destination.barData = self.barData
+            destination.barData = barData
         }
     }
     
@@ -119,11 +112,11 @@ extension MapViewController{
         mapShape.strokeColor = UIColor.red.cgColor
         mapShape.fillColor = UIColor.blue.cgColor
         mapShape.lineWidth = .init(5.0)
-        mapShape.position = .init(x: 0.0, y: 0.0)
+//        mapShape.position = .init(x: 0.0, y: 0.0)
         
-        //        let mapClipBorder = CGMutablePath()
-        //        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
-        //        mapShape.path = mapClipBorder
+                let mapClipBorder = CGMutablePath()
+                mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+                mapShape.path = mapClipBorder
     }
 }
 
@@ -140,7 +133,8 @@ extension MapViewController{
     
     func updateMapPins(_ bars:Array<Bar>){
         for bar in bars{
-            makePointOnMap(bar)
+            let point = BarPointAnnotation(bar)
+            self.mapView.addAnnotation(point)
         }
     }
     
@@ -158,10 +152,4 @@ extension MapViewController{
         }
     }
     
-    func makePointOnMap(_ bar: Bar) {
-        let point = BarPointAnnotation(bar)
-        print("Adding point \(point.bar.name)")
-//        selectedAnnotation = point
-        self.mapView.addAnnotation(point)
-    }
 }
