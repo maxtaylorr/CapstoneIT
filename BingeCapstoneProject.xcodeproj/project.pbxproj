@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D5DFA55225CD1EF0058FD19 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */; };
-		0D5DFA57225CD4450058FD19 /* BarPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */; };
 		21C765BB2BE4E997F43BA14C /* Pods_BingeCapstoneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */; };
 		276B1EFA227F7C8300FDB7BF /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EF9227F7C8300FDB7BF /* BaseNC.swift */; };
 		276B1EFD227F7C8900FDB7BF /* SideBySidePushInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarPointAnnotation.swift; sourceTree = "<group>"; };
 		276B1EF9227F7C8300FDB7BF /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushTransitionAnimator.swift; sourceTree = "<group>"; };
 		276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushInteractor.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				5BE03DB522191569006B2603 /* BarDetailViewController.swift */,
 				5BE03DB322191550006B2603 /* BarListViewController.swift */,
 				5BE03DA622190E59006B2603 /* Assets.xcassets */,
-				0D5DFA56225CD4450058FD19 /* BarPointAnnotation.swift */,
 				5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */,
 				5BE03DAB22190E59006B2603 /* Info.plist */,
 				5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */,
@@ -276,7 +273,6 @@
 				5BE03DB2221914EF006B2603 /* BarTableViewCell.swift in Sources */,
 				5BE03DB422191550006B2603 /* BarListViewController.swift in Sources */,
 				27DC09CE2280DF9200E4E1EC /* BarDatabaseController.swift in Sources */,
-				0D5DFA57225CD4450058FD19 /* BarPointAnnotation.swift in Sources */,
 				5BE03DB622191569006B2603 /* BarDetailViewController.swift in Sources */,
 				276B1F04227FC8A300FDB7BF /* BarCollectionViewCell.swift in Sources */,
 			);

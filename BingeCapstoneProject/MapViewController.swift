@@ -79,7 +79,6 @@ SideView {
         if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation {
             let bar = annotation.bar
             barData.selectedBar = bar
-            destination.barData = barData
         }
     }
     

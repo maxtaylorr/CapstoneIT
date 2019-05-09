@@ -11,7 +11,6 @@ import Kingfisher
 
 class BarListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
 SideView {
-    var barData: BarDatabaseController?
     var barList:Array<Bar> = []
     var directionToRoot: PushTransitionDirection = .left
     
@@ -60,8 +59,7 @@ SideView {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
-            barData?.selectedBar = barList[selectedRow.row]
-            destination.barData = barData
+            barData.selectedBar = barList[selectedRow.row]
         }
     }
 
