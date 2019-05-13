@@ -16,6 +16,7 @@ class LayerView : UIView{
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        (layer as? CAShapeLayer)?.borderColor = UIColor.purple.cgColor
         (layer as? CAShapeLayer)?.backgroundColor = UIColor.green.cgColor
     }
     
