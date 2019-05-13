@@ -71,8 +71,8 @@ SideView {
         let width = view.bounds.width
         let height = view.bounds.height
         
-        let mapWidth = 0.9 * width
-        let mapHeight = 0.8 * height
+        let mapWidth = 0.95 * width
+        let mapHeight = 0.9 * height
         
         let mapAnchorX = width/2 - mapWidth/2
         let mapAnchorY = height/2 - mapHeight/2
@@ -171,11 +171,4 @@ class BarPointAnnotation:MKPointAnnotation{
         self.coordinate.latitude = bar.coordinate.latitude
         self.title = bar.name
     }
-}
-
-
-
-//Functions for Map creation and and updating
-extension MapViewController{
-
 }
