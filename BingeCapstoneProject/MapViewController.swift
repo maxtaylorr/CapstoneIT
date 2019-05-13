@@ -43,6 +43,7 @@ SideView {
     
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
+    var mapView:MKMapView!
     //Test Constants
     let centerLatitude = 38.948
     let centerLongitude = -92.328
@@ -56,17 +57,13 @@ SideView {
     
     
     override func viewDidLoad() {
-//        let mapView = UIMapLayer(frame: .init(x: 0.0, y: 0.0, width: 400.0, height: 400.0))
-//        self.view.addSubview(mapView)
-//        view.bringSubviewToFront(mapView)
-//        mapView.delegate = self
-//        self.getCurrentLocation()
-//        self.createMap()
-//        self.setupMapViewLayer()
-//        if let bars = barData.bars{
-//            updateMapPins(Array(bars))
-//        }
         setupMapView()
+        self.getCurrentLocation()
+        self.createMap()
+        self.setupMapViewLayer()
+        if let bars = barData.bars{
+            updateMapPins(Array(bars))
+        }
         super.viewDidLoad()
     }
     
@@ -82,6 +79,8 @@ SideView {
         
         let mapView = UIMapLayer(frame: .init(x: mapAnchorX, y: mapAnchorY, width: mapWidth, height: mapHeight))
         
+        self.mapView = mapView.mapView
+        mapView.mapView.delegate = self
         self.view.addSubview(mapView)
         view.bringSubviewToFront(mapView)
     }
@@ -129,6 +128,37 @@ SideView {
             performSegue(withIdentifier: "showDetailFromMap", sender: self)
         }
     }
+    
+    func createMap() {
+        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
+        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+        let region = MKCoordinateRegion(center: center, span: span)
+        
+        self.mapView.setRegion(region, animated: false)
+        self.mapView.showsUserLocation = true
+    }
+    
+    func updateMapPins(_ bars:Array<Bar>){
+        for bar in bars{
+            let point = BarPointAnnotation(bar)
+            self.mapView.addAnnotation(point)
+        }
+    }
+    
+    func getCurrentLocation(){
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // Use location in background
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.delegate = self as CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+
 }
 
 class BarPointAnnotation:MKPointAnnotation{
@@ -146,35 +176,6 @@ class BarPointAnnotation:MKPointAnnotation{
 
 
 //Functions for Map creation and and updating
-//extension MapViewController{
-//    func createMap() {
-//        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
-//        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-//        let region = MKCoordinateRegion(center: center, span: span)
-//
-//        self.mapView.setRegion(region, animated: false)
-//        self.mapView.showsUserLocation = true
-//    }
-//
-//    func updateMapPins(_ bars:Array<Bar>){
-//        for bar in bars{
-//            let point = BarPointAnnotation(bar)
-//            self.mapView.addAnnotation(point)
-//        }
-//    }
-//
-//    func getCurrentLocation(){
-//        self.locationManager.requestAlwaysAuthorization()
-//
-//        // Use location in background
-//        self.locationManager.requestWhenInUseAuthorization()
-//
-//        locationManager.delegate = self as CLLocationManagerDelegate
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.startUpdatingLocation()
-//        }
-//    }
-//
-//}
+extension MapViewController{
+
+}
