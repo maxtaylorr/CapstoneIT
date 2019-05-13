@@ -112,10 +112,10 @@ extension MapViewController{
         mapShape.fillColor = UIColor.blue.cgColor
         mapShape.lineWidth = .init(5.0)
 //        mapShape.position = .init(x: 0.0, y: 0.0)
-        
-                let mapClipBorder = CGMutablePath()
-                mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
-                mapShape.path = mapClipBorder
+//        
+//                let mapClipBorder = CGMutablePath()
+//                mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+//                mapShape.path = mapClipBorder
     }
 }
 
