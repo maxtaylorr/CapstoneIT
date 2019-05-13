@@ -10,19 +10,26 @@ import Foundation
 import UIKit
 import MapKit
 
-
-class UIMapLayer:UIView, MKMapViewDelegate,CLLocationManagerDelegate{
+class LayerView : UIView{
     
+    public final override class var layerClass: AnyClass { return CAShapeLayer.self }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        (layer as? CAShapeLayer)?.backgroundColor = UIColor.green.cgColor
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class UIMapLayer:LayerView, MKMapViewDelegate,CLLocationManagerDelegate{
     var selectedAnnotation:BarPointAnnotation?
     var mapView:MKMapView!
 
-    public final override class var layerClass: AnyClass { return CAShapeLayer.self }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        (layer as? CAShapeLayer)?.fillColor = UIColor.purple.cgColor
-        (layer as? CAShapeLayer)?.backgroundColor = UIColor.green.cgColor
-
         setupMap()
     }
     
@@ -49,12 +56,17 @@ class UIMapLayer:UIView, MKMapViewDelegate,CLLocationManagerDelegate{
         self.addSubview(mapView)
         self.bringSubviewToFront(mapView)
     }
-    
+}
 
+class UIBarHeader:LayerView{
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     
-    
-    
-    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     
 }
 
