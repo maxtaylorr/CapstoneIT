@@ -10,11 +10,41 @@ import UIKit
 import MapKit
 import FirebaseFirestore
 
+//Functions for UI Design
+extension MapViewController{
+    func setupMapViewLayer(){
+        let mapShape = CAShapeLayer()
+        view.layer.addSublayer(mapShape)
+        mapShape.strokeColor = UIColor.red.cgColor
+        mapShape.fillColor = UIColor.blue.cgColor
+        mapShape.lineWidth = .init(2.0)
+
+        let rect = CGRect(x: mapView.bounds.minX, y: mapView.bounds.minY, width: mapView.bounds.width, height: mapView.bounds.height)
+
+        let mapClipBorder = CGMutablePath()
+//        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+//        mapShape.path = mapClipBorder
+        mapClipBorder.addRect(rect)
+        mapShape.path = mapClipBorder
+//
+//        let parentNode = SKShapeNode(path: )
+//
+//        let boundingBoxNode = SKShapeNode(rectOf: self.view.calculateAccumulatedFrame().size)
+//        boundingBoxNode.lineWidth = 1
+//        boundingBoxNode.strokeColor = .black
+//        boundingBoxNode.fillColor = .clear
+//        boundingBoxNode.path = boundingBoxNode.path?.copy(dashingWithPhase: 0,
+//                                                          lengths: [10,10])
+//
+//        parentNode.addChild(boundingBoxNode)
+    }
+}
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
 SideView {
     
-//    var barData: BarDatabaseController?
+    @IBOutlet weak var contentView: UIView!
+    //    var barData: BarDatabaseController?
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
 
@@ -103,21 +133,7 @@ class BarPointAnnotation:MKPointAnnotation{
     }
 }
 
-//Functions for UI Design
-extension MapViewController{
-    func setupMapViewLayer(){
-        let mapShape = CAShapeLayer()
-        view.layer.addSublayer(mapShape)
-        mapShape.strokeColor = UIColor.red.cgColor
-        mapShape.fillColor = UIColor.blue.cgColor
-        mapShape.lineWidth = .init(5.0)
-//        mapShape.position = .init(x: 0.0, y: 0.0)
-//        
-//                let mapClipBorder = CGMutablePath()
-//                mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
-//                mapShape.path = mapClipBorder
-    }
-}
+
 
 //Functions for Map creation and and updating
 extension MapViewController{

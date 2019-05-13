@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-var barData = BarDatabaseController()
+var barData = BarDataProvider()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

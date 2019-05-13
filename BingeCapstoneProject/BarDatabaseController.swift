@@ -41,7 +41,7 @@ struct Coordinate:Hashable,Codable{
     var longitude:Double
 }
 
-class BarDatabaseController{
+class BarDataProvider{
     /*
      Database Instance
      Bars Currently Loaded
