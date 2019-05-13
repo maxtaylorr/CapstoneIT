@@ -348,10 +348,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-1k-MP5" userLabel="ContentView">
                                 <rect key="frame" x="19" y="64" width="337.5" height="571"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZZP-Lm-9uc">
-                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="571"/>
-                                    </mapView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wsH-9o-aMp" userLabel="BarInfoCollectionView">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wsH-9o-aMp" userLabel="BarInfoCollectionView">
                                         <rect key="frame" x="-27.5" y="487" width="392" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="poL-Fp-JPK">
@@ -395,17 +392,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="wsH-9o-aMp" secondAttribute="bottom" constant="-16" id="5lh-gg-xVp"/>
-                                    <constraint firstItem="wsH-9o-aMp" firstAttribute="centerX" secondItem="ZZP-Lm-9uc" secondAttribute="centerX" id="AiG-Mt-fj1"/>
-                                    <constraint firstItem="ZZP-Lm-9uc" firstAttribute="centerX" secondItem="Ofd-1k-MP5" secondAttribute="centerX" id="Ew0-sK-Wep"/>
                                     <constraint firstItem="wsH-9o-aMp" firstAttribute="width" secondItem="Ofd-1k-MP5" secondAttribute="width" multiplier="1.05" constant="37.5" id="Imt-ek-Mf1"/>
-                                    <constraint firstItem="ZZP-Lm-9uc" firstAttribute="width" secondItem="Ofd-1k-MP5" secondAttribute="width" id="PSW-8d-KCC"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZZP-Lm-9uc" secondAttribute="bottom" id="xkj-PF-lpt"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="R0L-lB-DvC" firstAttribute="bottom" secondItem="Ofd-1k-MP5" secondAttribute="bottom" constant="32" id="0kq-s0-5o0"/>
-                            <constraint firstItem="ZZP-Lm-9uc" firstAttribute="top" secondItem="R0L-lB-DvC" secondAttribute="top" id="5Z4-Tb-UCJ"/>
                             <constraint firstItem="wsH-9o-aMp" firstAttribute="height" secondItem="Wlu-LZ-pUS" secondAttribute="height" multiplier="0.18" constant="-20.060000000000002" id="FB7-f6-m0r"/>
                             <constraint firstItem="Ofd-1k-MP5" firstAttribute="width" secondItem="Wlu-LZ-pUS" secondAttribute="width" multiplier="0.9" id="nhX-eU-jMd"/>
                             <constraint firstItem="Ofd-1k-MP5" firstAttribute="top" secondItem="R0L-lB-DvC" secondAttribute="top" id="r77-ar-Siu"/>
@@ -413,10 +405,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R0L-lB-DvC"/>
                     </view>
-                    <connections>
-                        <outlet property="contentView" destination="Ofd-1k-MP5" id="Zga-vR-5kY"/>
-                        <outlet property="mapView" destination="ZZP-Lm-9uc" id="eTs-hY-B6N"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ypm-fl-YKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,20 +13,18 @@ import FirebaseFirestore
 //Functions for UI Design
 extension MapViewController{
     func setupMapViewLayer(){
-        let mapShape = CAShapeLayer()
-        view.layer.addSublayer(mapShape)
-        mapShape.strokeColor = UIColor.red.cgColor
-        mapShape.fillColor = UIColor.blue.cgColor
-        mapShape.lineWidth = .init(2.0)
-
-        let rect = CGRect(x: mapView.bounds.minX, y: mapView.bounds.minY, width: mapView.bounds.width, height: mapView.bounds.height)
-
-        let mapClipBorder = CGMutablePath()
-//        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
-//        mapShape.path = mapClipBorder
-        mapClipBorder.addRect(rect)
-        mapShape.path = mapClipBorder
+//        let mapShape = CAShapeLayer()
+//        view.layer.addSublayer(mapShape)
+//        mapShape.strokeColor = UIColor.red.cgColor
+//        mapShape.fillColor = UIColor.blue.cgColor
+//        mapShape.lineWidth = .init(2.0)
 //
+//        let mapClipBorder = CGMutablePath()
+////        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+////        mapShape.path = mapClipBorder
+//        mapClipBorder.addRect(rect)
+//        mapShape.path = mapClipBorder
+////
 //        let parentNode = SKShapeNode(path: )
 //
 //        let boundingBoxNode = SKShapeNode(rectOf: self.view.calculateAccumulatedFrame().size)
@@ -43,8 +41,6 @@ extension MapViewController{
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
 SideView {
     
-    @IBOutlet weak var contentView: UIView!
-    //    var barData: BarDatabaseController?
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
 
@@ -55,25 +51,22 @@ SideView {
     let longitudeDelta = 0.02
     
     // Map View
-    @IBOutlet weak var mapView: MKMapView!
+//    @IBOutlet weak var mapView: MKMapView!
     let annotationIdentifier = "barIdentifier"
     var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
-        mapView.delegate = self
-        
-        self.getCurrentLocation()
-        self.createMap()
-        self.setupMapViewLayer()
-        if let bars = barData.bars{
-            updateMapPins(Array(bars))
-        }
+        let mapView = UIMapLayer()
+        self.view.addSubview(mapView)
+//        mapView.delegate = self
+//        self.getCurrentLocation()
+//        self.createMap()
+//        self.setupMapViewLayer()
+//        if let bars = barData.bars{
+//            updateMapPins(Array(bars))
+//        }
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getCurrentLocation()
     }
     
     // create pins on map
@@ -136,35 +129,35 @@ class BarPointAnnotation:MKPointAnnotation{
 
 
 //Functions for Map creation and and updating
-extension MapViewController{
-    func createMap() {
-        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
-        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-        let region = MKCoordinateRegion(center: center, span: span)
-        
-        self.mapView.setRegion(region, animated: false)
-        self.mapView.showsUserLocation = true
-    }
-    
-    func updateMapPins(_ bars:Array<Bar>){
-        for bar in bars{
-            let point = BarPointAnnotation(bar)
-            self.mapView.addAnnotation(point)
-        }
-    }
-    
-    func getCurrentLocation(){
-        self.locationManager.requestAlwaysAuthorization()
-        
-        // Use location in background
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        locationManager.delegate = self as CLLocationManagerDelegate
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-}
+//extension MapViewController{
+//    func createMap() {
+//        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
+//        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+//        let region = MKCoordinateRegion(center: center, span: span)
+//
+//        self.mapView.setRegion(region, animated: false)
+//        self.mapView.showsUserLocation = true
+//    }
+//
+//    func updateMapPins(_ bars:Array<Bar>){
+//        for bar in bars{
+//            let point = BarPointAnnotation(bar)
+//            self.mapView.addAnnotation(point)
+//        }
+//    }
+//
+//    func getCurrentLocation(){
+//        self.locationManager.requestAlwaysAuthorization()
+//
+//        // Use location in background
+//        self.locationManager.requestWhenInUseAuthorization()
+//
+//        locationManager.delegate = self as CLLocationManagerDelegate
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//
+//        if CLLocationManager.locationServicesEnabled() {
+//            locationManager.startUpdatingLocation()
+//        }
+//    }
+//
+//}

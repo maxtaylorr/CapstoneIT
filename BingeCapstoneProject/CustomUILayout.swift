@@ -12,6 +12,7 @@ import MapKit
 
 class UIMapLayer:UIView, MKMapViewDelegate,CLLocationManagerDelegate{
     var selectedAnnotation:BarPointAnnotation?
+    var mapView:MKMapView!
 
     public final override class var layerClass: AnyClass { return CAShapeLayer.self }
     
