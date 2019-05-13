@@ -44,6 +44,8 @@ SideView {
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
     var mapView:MKMapView!
+    
+    var barHeader:UIBarHeader!
     //Test Constants
     let centerLatitude = 38.948
     let centerLongitude = -92.328
@@ -58,12 +60,15 @@ SideView {
     
     override func viewDidLoad() {
         setupMapView()
+        setupBarHeader()
         self.getCurrentLocation()
         self.createMap()
         self.setupMapViewLayer()
         if let bars = barData.bars{
             updateMapPins(Array(bars))
         }
+        barHeader.setupMaskLayer()
+        barHeader.collapseView()
         super.viewDidLoad()
     }
     
@@ -83,6 +88,20 @@ SideView {
         mapView.mapView.delegate = self
         self.view.addSubview(mapView)
         view.bringSubviewToFront(mapView)
+    }
+    
+    func setupBarHeader(){
+        let width = Double(view.bounds.width)
+        let height = Double(view.bounds.height)
+        
+        let boxWidth = Double(width)
+        let boxHeight = Double(height) * 0.25
+        
+        let x = width/2 - boxWidth/2
+        let y = height * 0.75
+        
+        self.barHeader = UIBarHeader(frame: .init(x: x, y: y, width: boxWidth, height: boxHeight))
+        view.addSubview(barHeader)
     }
     
     // create pins on map
