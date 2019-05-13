@@ -56,10 +56,9 @@ SideView {
     
     
     override func viewDidLoad() {
-//        let mapView = UIMapLayer(frame: .init(origin: view.center, size: .init(width: 300.0, height: 300.0)))
-        let mapView = UIMapLayer(frame: .init(x: 0.0, y: 0.0, width: 400.0, height: 400.0))
-        self.view.addSubview(mapView)
-        view.bringSubviewToFront(mapView)
+//        let mapView = UIMapLayer(frame: .init(x: 0.0, y: 0.0, width: 400.0, height: 400.0))
+//        self.view.addSubview(mapView)
+//        view.bringSubviewToFront(mapView)
 //        mapView.delegate = self
 //        self.getCurrentLocation()
 //        self.createMap()
@@ -67,7 +66,24 @@ SideView {
 //        if let bars = barData.bars{
 //            updateMapPins(Array(bars))
 //        }
+        setupMapView()
         super.viewDidLoad()
+    }
+    
+    func setupMapView(){
+        let width = view.bounds.width
+        let height = view.bounds.height
+        
+        let mapWidth = 0.9 * width
+        let mapHeight = 0.8 * height
+        
+        let mapAnchorX = width/2 - mapWidth/2
+        let mapAnchorY = height/2 - mapHeight/2
+        
+        let mapView = UIMapLayer(frame: .init(x: mapAnchorX, y: mapAnchorY, width: mapWidth, height: mapHeight))
+        
+        self.view.addSubview(mapView)
+        view.bringSubviewToFront(mapView)
     }
     
     // create pins on map

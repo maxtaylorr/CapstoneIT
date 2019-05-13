@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 import MapKit
 
+
 class UIMapLayer:UIView, MKMapViewDelegate,CLLocationManagerDelegate{
+    
     var selectedAnnotation:BarPointAnnotation?
     var mapView:MKMapView!
 
@@ -21,26 +23,34 @@ class UIMapLayer:UIView, MKMapViewDelegate,CLLocationManagerDelegate{
         (layer as? CAShapeLayer)?.fillColor = UIColor.purple.cgColor
         (layer as? CAShapeLayer)?.backgroundColor = UIColor.green.cgColor
 
-        
-        mapView = .init()
-        let leftMargin:CGFloat = 10
-        let topMargin:CGFloat = 60
-        let mapWidth:CGFloat = self.frame.size.width-20
-        let mapHeight:CGFloat = 300
-        
-        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: mapWidth, height: mapHeight)
-        mapView.mapType = MKMapType.standard
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
-        mapView.center = self.center
-        
-        self.addSubview(mapView)
-        self.bringSubviewToFront(mapView)
+        setupMap()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func setupMap(){
+        let width = self.bounds.width
+        let height = self.bounds.height
+        
+        let mapWidth = 1.0 * width
+        let mapHeight = 1.0 * height
+        
+        let mapAnchorX = width/2 - mapWidth/2
+        let mapAnchorY = height/2 - mapHeight/2
+        
+        mapView = MKMapView(frame: .init(x: mapAnchorX, y: mapAnchorY, width: mapWidth, height: mapHeight))
+        mapView.mapType = MKMapType.standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        
+        
+        self.addSubview(mapView)
+        self.bringSubviewToFront(mapView)
+    }
+    
+
     
     
     
