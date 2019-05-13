@@ -43,7 +43,6 @@ SideView {
     
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
-
     //Test Constants
     let centerLatitude = 38.948
     let centerLongitude = -92.328
@@ -57,8 +56,10 @@ SideView {
     
     
     override func viewDidLoad() {
-        let mapView = UIMapLayer()
+//        let mapView = UIMapLayer(frame: .init(origin: view.center, size: .init(width: 300.0, height: 300.0)))
+        let mapView = UIMapLayer(frame: .init(x: 0.0, y: 0.0, width: 400.0, height: 400.0))
         self.view.addSubview(mapView)
+        view.bringSubviewToFront(mapView)
 //        mapView.delegate = self
 //        self.getCurrentLocation()
 //        self.createMap()
