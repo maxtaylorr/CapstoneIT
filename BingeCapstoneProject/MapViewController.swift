@@ -53,7 +53,6 @@ SideView {
     let longitudeDelta = 0.02
     
     // Map View
-//    @IBOutlet weak var mapView: MKMapView!
     let annotationIdentifier = "barIdentifier"
     var locationManager = CLLocationManager()
     
@@ -67,9 +66,10 @@ SideView {
         if let bars = barData.bars{
             updateMapPins(Array(bars))
         }
-        barHeader.setupMaskLayer()
-        barHeader.collapseView()
         super.viewDidLoad()
+        
+        barHeader.setupMaskLayer()
+        barHeader.toggleView()
     }
     
     func setupMapView(){
