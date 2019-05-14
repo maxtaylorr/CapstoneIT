@@ -58,6 +58,7 @@ SideView {
     
     
     override func viewDidLoad() {
+
         setupMapView()
         setupBarHeader()
         self.getCurrentLocation()
@@ -66,10 +67,12 @@ SideView {
         if let bars = barData.bars{
             updateMapPins(Array(bars))
         }
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         barHeader.setupMaskLayer()
         barHeader.toggleView()
+        barHeader.setupBarName()
+        barHeader.setupBarInfo()
     }
     
     func setupMapView(){
@@ -101,9 +104,12 @@ SideView {
         let y = height * 0.75
         
         self.barHeader = UIBarHeader(frame: .init(x: x, y: y, width: boxWidth, height: boxHeight))
-        view.addSubview(barHeader)
+        self.view.addSubview(barHeader)
     }
     
+    func setupBarDetailView(){
+        
+    }
     // create pins on map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let view: MKPinAnnotationView
@@ -130,6 +136,8 @@ SideView {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
+        barHeader.selectedBar = selectedAnnotation?.bar
+        barHeader.update()
     }
     
     // pass Bar to BarDetailViewController

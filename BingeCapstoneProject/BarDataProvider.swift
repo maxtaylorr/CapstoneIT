@@ -117,5 +117,9 @@ class BarDataProvider{
         let copy = barList
         self.bars = copy
     }
+    
+    func calculateDistance(_ coord:Coordinate){
+        
+    }
 }
 

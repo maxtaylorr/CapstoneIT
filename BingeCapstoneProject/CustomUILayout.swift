@@ -60,9 +60,6 @@ class UIMapLayer:LayerView, MKMapViewDelegate,CLLocationManagerDelegate{
     }
     
     private func setupClipPlane(){
-        //        let width = self.bounds.width
-        //        let height = self.bounds.height
-        
         self.mapView.layer.cornerRadius = 10.0
         self.layer.cornerRadius = 10.0
         
@@ -79,18 +76,21 @@ class UIBarHeader:LayerView{
     var collapsedPath:UIBezierPath?
     var expandedPath:UIBezierPath?
     var viewOpen:Bool = false
+    var barNameLayer : LayerView!
     
     let cornerRadius = 10
     let animationTime = 0.5
+    
+    var barName = UILabel()
+    var barDistance = UILabel()
+    var barHours = UILabel()
     
     override init(frame: CGRect) {
         width = Double(frame.width)
         height = Double(frame.height)
         super.init(frame: frame)
+//        self.backgroundColor = nil
         
-        let tapped1 = UITapGestureRecognizer(target: self, action: #selector(detectTap(_:)))
-        self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(tapped1)
         self.layer.cornerRadius = .init(integerLiteral: cornerRadius)
     }
     
@@ -142,9 +142,45 @@ class UIBarHeader:LayerView{
         }
     }
     
+    func setupBarName(){
+        let barNameLayer = LayerView(frame: .init(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height/2))
+        
+        barNameLayer.layer.backgroundColor = UIColor.red.cgColor
+        
+        let tapped1 = UITapGestureRecognizer(target: self, action: #selector(detectTap(_:)))
+        barNameLayer.isUserInteractionEnabled = true
+        barNameLayer.addGestureRecognizer(tapped1)
+        barNameLayer.layer.mask = self.maskLayer
+        
+        barName = UILabel(frame: .init(x:0, y:0,width: 200,height: 21))
+        barName.center = .init(x: barNameLayer.frame.midX, y:0)
+        barName.textAlignment = NSTextAlignment.center
+        barName.text = "Bar names"
+
+        barNameLayer.addSubview(barName)
+        barNameLayer.bringSubviewToFront(barName)
+        self.barNameLayer = barNameLayer
+        self.superview!.addSubview(barNameLayer)
+    }
+    
     func setupBarInfo(){
+        let barInfoLayer = LayerView(frame: .init(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height/2))
+        barInfoLayer.backgroundColor = UIColor.purple
+        
+        barHours = UILabel(frame: .init(x:0, y:0,width: 200,height: 21))
+        barHours.center = .init(x: self.frame.midX, y: self.frame.minY + 50)
+        barHours.textAlignment = NSTextAlignment.center
+        barHours.text = "Bar hours"
+        
+        self.addSubview(barHours)
+        self.bringSubviewToFront(barHours)
+    }
+    
+    func update(){
         if let bar = selectedBar {
-            
+            barName.text = bar.name
+            barHours.text = bar.hours
+//            barName.drawText(in: barNameLayer.layer.frame)
         }
     }
 }
