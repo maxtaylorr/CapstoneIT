@@ -11,9 +11,6 @@ import UIKit
 class BarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var barImage: UIImageView!
     @IBOutlet weak var barTitleLabel: UILabel!
-    @IBOutlet weak var BarDescLabel: UILabel!
-    
-    
-    
+    @IBOutlet weak var BarDistanceLabel: UILabel!
 
 }

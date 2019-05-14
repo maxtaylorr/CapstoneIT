@@ -33,7 +33,7 @@
                                         <rect key="frame" x="141" y="69" width="72" height="30"/>
                                         <state key="normal" title="List"/>
                                         <connections>
-                                            <segue destination="ogE-9h-CFL" kind="show" id="cT9-BK-eS8"/>
+                                            <segue destination="6xN-aZ-bCL" kind="show" id="xaU-F5-h0y"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -265,19 +265,64 @@
             </objects>
             <point key="canvasLocation" x="57" y="707"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="30M-RS-Zg4">
+        <!--Bar Collection View Controller-->
+        <scene sceneID="nZ2-z3-ERq">
             <objects>
-                <viewController id="wA3-zu-0Bh" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lik-JJ-KXs">
+                <collectionViewController id="6xN-aZ-bCL" customClass="BarCollectionViewController" customModule="BingeCapstoneProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Roo-Ly-MKa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="l32-K8-lI8"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WsS-Wh-0Hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n2J-8c-tYe">
+                            <size key="itemSize" width="364" height="160"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="barCell" id="xgj-x4-tik" customClass="BarCollectionViewCell" customModule="BingeCapstoneProject" customModuleProvider="target">
+                                <rect key="frame" x="5.5" y="0.0" width="364" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="364" height="160"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p8v-7F-kUM">
+                                            <rect key="frame" x="20" y="42" width="113" height="76"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaZ-wH-rbX">
+                                            <rect key="frame" x="157" y="87" width="96" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bv2-5u-zco">
+                                            <rect key="frame" x="154" y="36" width="98" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <connections>
+                                    <outlet property="BarDistanceLabel" destination="yaZ-wH-rbX" id="xrf-F8-g59"/>
+                                    <outlet property="barImage" destination="p8v-7F-kUM" id="7xc-RS-qXz"/>
+                                    <outlet property="barTitleLabel" destination="bv2-5u-zco" id="Yuw-We-2HY"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="6xN-aZ-bCL" id="cES-gw-Fi7"/>
+                            <outlet property="delegate" destination="6xN-aZ-bCL" id="T6V-1i-7aK"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1tt-Ud-0gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-746" y="269"/>
+            <point key="canvasLocation" x="-751" y="269"/>
         </scene>
         <!--BaseNC-->
         <scene sceneID="Yr8-s7-d7E">
