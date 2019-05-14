@@ -76,12 +76,16 @@ class UIBarHeader:LayerView{
     var maskLayer:CAShapeLayer?
     var collapsedPath:UIBezierPath?
     var expandedPath:UIBezierPath?
+    var viewOpen:Bool = false
     
     override init(frame: CGRect) {
         width = Double(frame.width)
         height = Double(frame.height)
         super.init(frame: frame)
         
+        let tapped1 = UITapGestureRecognizer(target: self, action: #selector(detectTap(_:)))
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(tapped1)
         
     }
     
@@ -99,6 +103,69 @@ class UIBarHeader:LayerView{
 //        collapsedPath?.append(expandedPath!)
         
         self.layer.mask = maskLayer
+    }
+    
+    @objc func detectTap(_ recognizer:UITapGestureRecognizer) {
+//        let translation  = recognizer.translation(in: self.superview)
+//        self.center = CGPoint(x: lastLocation.x, y: lastLocation.y + translation.y)
+        toggleView()
+    }
+    
+    func toggleView(){
+        switch viewOpen {
+        case false:
+            viewOpen = true
+            let anim = CABasicAnimation(keyPath: "path")
+            if let maskLayer = maskLayer, let collapsedPath = collapsedPath{
+                // from value is the current mask path
+                anim.fromValue = maskLayer.path
+                
+                // to value is the new path
+                anim.toValue = collapsedPath.cgPath
+                
+                // duration of your animation
+                anim.duration = 0.8
+                
+                // custom timing function to make it look smooth
+                anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                
+                // add animation
+                maskLayer.add(anim, forKey: nil)
+                
+                // update the path property on the mask layer, using a CATransaction to prevent an implicit animation
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
+                maskLayer.path = collapsedPath.cgPath
+                CATransaction.commit()
+                break
+            }
+            case true:
+                viewOpen = false
+                let anim = CABasicAnimation(keyPath: "path")
+                if let maskLayer = maskLayer, let expandedPath = expandedPath{
+                    // from value is the current mask path
+                    anim.fromValue = maskLayer.path
+                    
+                    // to value is the new path
+                    anim.toValue = expandedPath.cgPath
+                    
+                    // duration of your animation
+                    anim.duration = 0.8
+                    
+                    // custom timing function to make it look smooth
+                    anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                    
+                    // add animation
+                    maskLayer.add(anim, forKey: nil)
+                    
+                    // update the path property on the mask layer, using a CATransaction to prevent an implicit animation
+                    CATransaction.begin()
+                    CATransaction.setDisableActions(true)
+                    maskLayer.path = expandedPath.cgPath
+                    CATransaction.commit()
+                    break
+            }
+        }
     }
     
     
