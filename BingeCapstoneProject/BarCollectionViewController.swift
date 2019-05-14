@@ -15,10 +15,13 @@ private let reuseIdentifier = "barCell"
 
 class BarCollectionViewController: UICollectionViewController {
 
+    var barList:[Bar]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        if let bars = barData.bars{
+            barList = Array(bars)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -55,12 +58,12 @@ class BarCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? BarCollectionViewCell{
-        let currentBar = Array(barData.bars!)[indexPath.row]
+        
+            let currentBar = barList[indexPath.row]
             cell.barImage.kf.setImage(with: URL(string: currentBar.imageURL))
             cell.barTitleLabel.text = currentBar.name
-
+            print("\(currentBar.name)")
             // TODO: Add accurate location data
             let centerLatitude = 38.948
             let centerLongitude = -92.328
@@ -73,6 +76,8 @@ class BarCollectionViewController: UICollectionViewController {
             return cell
         }
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+
         // Configure the cell
     
         return cell
