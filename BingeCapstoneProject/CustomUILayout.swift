@@ -81,6 +81,8 @@ class UIBarHeader:LayerView{
         width = Double(frame.width)
         height = Double(frame.height)
         super.init(frame: frame)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
