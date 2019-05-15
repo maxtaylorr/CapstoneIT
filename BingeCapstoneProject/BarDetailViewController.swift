@@ -10,65 +10,102 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class BarDetailViewController: UIViewController, MKMapViewDelegate {
-
+class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var dealCollectionView: UICollectionView!
     // Bar passed by selection from map or table
-    var passedBar: Bar?
-    
     @IBOutlet weak var barDescLabel: UILabel!
     @IBOutlet weak var barTitleLabel: UILabel!
-    @IBOutlet weak var barInfoTextView: UITextView!
     @IBOutlet weak var barMapView: MKMapView!
     @IBOutlet weak var barImage: UIImageView!
     
+    var selectedBar:Bar!
+    
     override func viewDidLoad() {
+        dealCollectionView.dataSource = self 
         super.viewDidLoad()
-        
-        guard let bar = passedBar else {
-            return
-        }
-        
-        barTitleLabel.text = bar.name
-        barDescLabel.text = bar.openingTime
-        barImage.kf.setImage(with: URL(string: bar.imageURL))
-        
-        var dealsString: String = ""
-        
-        for dealHour in bar.deals {
-            dealsString += "\(dealHour.hours) \n"
-            
-            for deal in dealHour.deals {
-                dealsString += "\t \(deal) \n"
-            }
-            dealsString += "\n"
-            
-        }
-        barInfoTextView.text = dealsString
-        
-        focusMapView(bar)
-        addPin(bar)
         barMapView.delegate = self
+        dealCollectionView.reloadData()
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateLabelValues(selectedBar)
+        focusMapView(selectedBar)
+        addPin(selectedBar)
+        dealCollectionView.reloadData()
+    }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        print(selectedBar.deals.count)
+        return selectedBar.deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let deals = selectedBar.deals
+        return deals[section].deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind:
+        String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: "dealHour",
+                    for: indexPath) as? HoursHeader
+                else {
+                    fatalError("Invalid view type")
+            }
+            
+            let title = selectedBar.deals[indexPath.section].hours
+            print(title)
+            headerView.label.text = "Hours: \(title)"
+            return headerView
+        default:
+            // 4
+            assert(false, "Invalid element type")
+        }
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //        collectionView.register(DealCell.self, forCellWithReuseIdentifier: "dealCell")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dealCell", for: indexPath)
+        if let cell = cell as? DealCell{
+            let deal = selectedBar.deals[indexPath.section].deals
+            cell.label.text = deal[indexPath.row]
+            return cell
+        }
+        return cell
+    }
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
         if let annotationTitle = view.annotation?.title
         {
             print("User tapped on annotation with title: \(annotationTitle!)")
-            openMapForPlace()
+//            openMapForPlace(view.annotation)
         }
+    }
+    
+    func updateLabelValues(_ bar:Bar){
+        barTitleLabel.text = bar.name
+        barDescLabel.text = bar.hours
+        barImage.kf.setImage(with: URL(string: bar.imageURL))
     }
     
     func addPin(_ bar: Bar) {
         let annotation = MKPointAnnotation()
-        let centerCoordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
+        let centerCoordinate = CLLocationCoordinate2D(latitude: bar.coordinate.latitude, longitude: bar.coordinate.longitude)
         annotation.coordinate = centerCoordinate
         annotation.title = bar.name
         barMapView.addAnnotation(annotation)
     }
     
     func focusMapView(_ bar: Bar) {
-        let center = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
+        let center = CLLocationCoordinate2D(latitude: bar.coordinate.latitude, longitude: bar.coordinate.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: center, span: span)
         barMapView.setRegion(region, animated: true)
@@ -76,13 +113,9 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate {
 
     }
     
-    func openMapForPlace() {
-        guard let bar = passedBar else {
-            return
-        }
-        
-        let latitude:CLLocationDegrees =  bar.latitude
-        let longitude:CLLocationDegrees =  bar.longitude
+    func openMapForPlace(_ bar:Bar) {
+        let latitude:CLLocationDegrees =  bar.coordinate.latitude
+        let longitude:CLLocationDegrees =  bar.coordinate.longitude
         let regionDistance:CLLocationDistance = 10000
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
@@ -95,4 +128,13 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate {
         mapItem.name = "\(bar.name)"
         mapItem.openInMaps(launchOptions: options)
     }
+}
+
+class HoursHeader:UICollectionReusableView{
+    @IBOutlet weak var label: UILabel!
+}
+
+class DealCell:UICollectionViewCell{
+    @IBOutlet weak var label: UILabel!
+
 }

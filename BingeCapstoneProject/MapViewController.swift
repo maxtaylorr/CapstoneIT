@@ -10,59 +10,73 @@ import UIKit
 import MapKit
 import FirebaseFirestore
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+//Functions for UI Design
+extension MapViewController{
+    func setupMapViewLayer(){
+//        let mapShape = CAShapeLayer()
+//        view.layer.addSublayer(mapShape)
+//        mapShape.strokeColor = UIColor.red.cgColor
+//        mapShape.fillColor = UIColor.blue.cgColor
+//        mapShape.lineWidth = .init(2.0)
+//
+//        let mapClipBorder = CGMutablePath()
+////        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
+////        mapShape.path = mapClipBorder
+//        mapClipBorder.addRect(rect)
+//        mapShape.path = mapClipBorder
+////
+//        let parentNode = SKShapeNode(path: )
+//
+//        let boundingBoxNode = SKShapeNode(rectOf: self.view.calculateAccumulatedFrame().size)
+//        boundingBoxNode.lineWidth = 1
+//        boundingBoxNode.strokeColor = .black
+//        boundingBoxNode.fillColor = .clear
+//        boundingBoxNode.path = boundingBoxNode.path?.copy(dashingWithPhase: 0,
+//                                                          lengths: [10,10])
+//
+//        parentNode.addChild(boundingBoxNode)
+    }
+}
 
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
+SideView {
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var selectedAnnotation:BarPointAnnotation?
+    var directionToRoot: PushTransitionDirection = .left
+    
+    var barHeader:UIBarHeader!
+    //Test Constants
     let centerLatitude = 38.948
     let centerLongitude = -92.328
     let latitudeDelta = 0.02
     let longitudeDelta = 0.02
     
-    var db: Firestore!
     // Map View
-    @IBOutlet weak var mapView: MKMapView!
-    
-    // selected pin on map
-    var selectedAnnotation: BarPointAnnotation?
-    
-    // Location manager
+    let annotationIdentifier = "barIdentifier"
     var locationManager = CLLocationManager()
     
-    // array of bars
-    var bars = [Bar]()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.getCurrentLocation()
+        self.createMap()
+        self.setupMapViewLayer()
+        if let bars = barData.bars{
+            updateMapPins(Array(bars))
+        }
         mapView.delegate = self
-        
-        getCurrentLocation()
-        createMap()
-        
-        let settings = FirestoreSettings()
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        
-        pullData()
-        
-        // create array of bars
-
-//        makePointsOnMap(bars)
-        
+        super.viewDidLoad()
     }
     
-    func createMap() {
-        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
-        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
-        let region = MKCoordinateRegion(center: center, span: span)
-        
-        self.mapView.setRegion(region, animated: false)
-        self.mapView.showsUserLocation = true
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadInputViews()
+        if let bars = barData.bars{
+            updateMapPins(Array(bars))
+        }
     }
-    
     // create pins on map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var view: MKPinAnnotationView
-        
-        let annotationIdentifier = "barIdentifier"
+        let view: MKPinAnnotationView
         
         if (annotation.isKind(of: MKUserLocation.self)){
             return nil
@@ -73,7 +87,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             dequeuedView.annotation = selectedAnnotation
             view = dequeuedView
         } else {
-            
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             view.isUserInteractionEnabled = true
             view.pinTintColor = .black
@@ -85,14 +98,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return view
     }
     
-    func makePointOnMap(_ bar: Bar) {
-
-        let point = BarPointAnnotation()
-        point.bar = bar
-        point.coordinate = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
-        point.title = bar.name
-        mapView.addAnnotation(point)
-        
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
+//        barHeader.update(selectedAnnotation?.bar)
+    }
+    
+    // pass Bar to BarDetailViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation {
+            let bar = annotation.bar
+        }
     }
     
     // perform segue when tapping callout info on pin
@@ -103,69 +118,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-        func pullData(){
-            db.collection("bars_04_02_2019").getDocuments() { (querySnapshot, err) in
-               
-                var bars = [Bar]()
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
+    func createMap() {
+        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
+        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
+        let region = MKCoordinateRegion(center: center, span: span)
+        
+        self.mapView.setRegion(region, animated: false)
+        self.mapView.showsUserLocation = true
+    }
     
-                        let name = document.data()["name"] as! String
-                        let imageURL = document.data()["imageURL"] as! String
-                        let hours = document.data()["hoursOpen"] as! String
-                        let deals = document.data()["deals"] as? Array ?? [""]
-                        
-                        var lat: Double = 0.0
-                        var lon: Double = 0.0
-                        if let coords = document.get("coords") {
-                            let point = coords as! GeoPoint
-                            lat = point.latitude
-                            lon = point.longitude
-                        }
-                        
-                        var dealsArray: [Deal] = []
-                        
-                        let trigger = CharacterSet(charactersIn: "$")
-                        var dealHours: String = ""
-                        var dealsStringArray: [String] = []
-                        
-                        for deal in deals {
-                            if let test = deal.rangeOfCharacter(from: trigger) {
-                                dealsStringArray.append(deal)
-                                
-                            } else {
-                                if dealsStringArray.count > 0 {
-                                    dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
-                                    dealsStringArray = []
-                                }
-                                
-                                dealHours = deal
-                            }
-                        }
-                        dealsArray.append(Deal(hours: dealHours, deals: dealsStringArray))
-                        dealsStringArray = []
-                        
-                        let bar = Bar(name: name, date: Date(), latitude: lat, longitude: lon, openingTime: hours, imageURL: imageURL, deals: dealsArray)
-                            
-                        bars.append(bar)
-                        self.makePointOnMap(bar)
-
-                    }
-                }
-            }
-        }
-    
-    // pass Bar to BarDetailViewController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation, let bar = annotation.bar {
-            destination.passedBar = bar
+    func updateMapPins(_ bars:Array<Bar>){
+        for bar in bars{
+            let point = BarPointAnnotation(bar)
+            self.mapView.addAnnotation(point)
         }
     }
     
-    func getCurrentLocation()
-    {
+    func getCurrentLocation(){
         self.locationManager.requestAlwaysAuthorization()
         
         // Use location in background
@@ -179,4 +148,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
 
+}
+
+class BarPointAnnotation:MKPointAnnotation{
+    let bar : Bar
+    
+    init(_ bar:Bar){
+        self.bar = bar
+        super.init()
+        self.coordinate.longitude = bar.coordinate.longitude
+        self.coordinate.latitude = bar.coordinate.latitude
+        self.title = bar.name
+    }
 }

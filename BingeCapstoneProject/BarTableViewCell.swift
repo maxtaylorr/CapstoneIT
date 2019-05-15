@@ -10,9 +10,8 @@ import UIKit
 
 class BarTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var barImage: UIImageView!
-    @IBOutlet weak var barTitleLabel: UILabel!
-    @IBOutlet weak var BarDescLabel: UILabel!
+    @IBOutlet weak var dealTitle: UILabel!
+    @IBOutlet weak var dealDesc: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
