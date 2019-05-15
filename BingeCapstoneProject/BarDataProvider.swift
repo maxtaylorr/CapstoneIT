@@ -50,7 +50,6 @@ class BarDataProvider{
     let databaseUrl = "bars_04_02_2019"
     let db: Firestore!
     var bars:Set<Bar>?
-    var selectedBar:Bar?
     
     init() {
         let settings = FirestoreSettings()

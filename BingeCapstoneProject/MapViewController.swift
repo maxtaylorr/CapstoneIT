@@ -40,10 +40,10 @@ extension MapViewController{
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
 SideView {
+    @IBOutlet weak var mapView: MKMapView!
     
     var selectedAnnotation:BarPointAnnotation?
     var directionToRoot: PushTransitionDirection = .left
-    var mapView:MKMapView!
     
     var barHeader:UIBarHeader!
     //Test Constants
@@ -58,56 +58,21 @@ SideView {
     
     
     override func viewDidLoad() {
-
-        setupMapView()
-        setupBarHeader()
         self.getCurrentLocation()
         self.createMap()
         self.setupMapViewLayer()
         if let bars = barData.bars{
             updateMapPins(Array(bars))
         }
-        
+        mapView.delegate = self
         super.viewDidLoad()
-        barHeader.setupMaskLayer()
-        barHeader.toggleView()
-        barHeader.setupInfo()
     }
     
-    func setupMapView(){
-        let width = view.bounds.width
-        let height = view.bounds.height
-        
-        let mapWidth = 0.95 * width
-        let mapHeight = 0.9 * height
-        
-        let mapAnchorX = width/2 - mapWidth/2
-        let mapAnchorY = height/2 - mapHeight/2
-        
-        let mapView = UIMapLayer(frame: .init(x: mapAnchorX, y: mapAnchorY, width: mapWidth, height: mapHeight))
-        
-        self.mapView = mapView.mapView
-        mapView.mapView.delegate = self
-        self.view.addSubview(mapView)
-        view.bringSubviewToFront(mapView)
-    }
-    
-    func setupBarHeader(){
-        let width = Double(view.bounds.width)
-        let height = Double(view.bounds.height)
-        
-        let boxWidth = Double(width)
-        let boxHeight = Double(height) * 0.25
-        
-        let x = width/2 - boxWidth/2
-        let y = height * 0.75
-        
-        self.barHeader = UIBarHeader(frame: .init(x: x, y: y, width: boxWidth, height: boxHeight))
-        self.view.addSubview(barHeader)
-    }
-    
-    func setupBarDetailView(){
-        
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadInputViews()
+        if let bars = barData.bars{
+            updateMapPins(Array(bars))
+        }
     }
     // create pins on map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -135,15 +100,13 @@ SideView {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
-        barHeader.selectedBar = selectedAnnotation?.bar
-        barHeader.update(selectedAnnotation?.bar)
+//        barHeader.update(selectedAnnotation?.bar)
     }
     
     // pass Bar to BarDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation {
             let bar = annotation.bar
-            barData.selectedBar = bar
         }
     }
     

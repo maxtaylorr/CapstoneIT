@@ -10,26 +10,76 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class BarDetailViewController: UIViewController, MKMapViewDelegate {
-    
+class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollectionViewDataSource {
+    @IBOutlet weak var dealCollectionView: UICollectionView!
     // Bar passed by selection from map or table
     @IBOutlet weak var barDescLabel: UILabel!
     @IBOutlet weak var barTitleLabel: UILabel!
-    @IBOutlet weak var barInfoTextView: UITextView!
     @IBOutlet weak var barMapView: MKMapView!
     @IBOutlet weak var barImage: UIImageView!
     
+    var selectedBar:Bar!
+    
     override func viewDidLoad() {
+        dealCollectionView.dataSource = self 
         super.viewDidLoad()
-        let selectedBar = barData.selectedBar!
+        barMapView.delegate = self
+        dealCollectionView.reloadData()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         updateLabelValues(selectedBar)
-        updateDealList(selectedBar)
         focusMapView(selectedBar)
         addPin(selectedBar)
-        
-        barMapView.delegate = self
+        dealCollectionView.reloadData()
     }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        print(selectedBar.deals.count)
+        return selectedBar.deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let deals = selectedBar.deals
+        return deals[section].deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind:
+        String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: "dealHour",
+                    for: indexPath) as? HoursHeader
+                else {
+                    fatalError("Invalid view type")
+            }
+            
+            let title = selectedBar.deals[indexPath.section].hours
+            print(title)
+            headerView.label.text = "Hours: \(title)"
+            return headerView
+        default:
+            // 4
+            assert(false, "Invalid element type")
+        }
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //        collectionView.register(DealCell.self, forCellWithReuseIdentifier: "dealCell")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dealCell", for: indexPath)
+        if let cell = cell as? DealCell{
+            let deal = selectedBar.deals[indexPath.section].deals
+            cell.label.text = deal[indexPath.row]
+            return cell
+        }
+        return cell
+    }
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
@@ -44,19 +94,6 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate {
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.hours
         barImage.kf.setImage(with: URL(string: bar.imageURL))
-    }
-    
-    func updateDealList(_ bar:Bar){
-        var dealsString: String = ""
-        for dealHour in bar.deals {
-            dealsString += "\(dealHour.hours) \n"
-            for deal in dealHour.deals {
-                dealsString += "\t \(deal) \n"
-            }
-            dealsString += "\n"
-            
-        }
-        barInfoTextView.text = dealsString
     }
     
     func addPin(_ bar: Bar) {
@@ -77,8 +114,6 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     func openMapForPlace(_ bar:Bar) {
-        
-        
         let latitude:CLLocationDegrees =  bar.coordinate.latitude
         let longitude:CLLocationDegrees =  bar.coordinate.longitude
         let regionDistance:CLLocationDistance = 10000
@@ -93,4 +128,13 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate {
         mapItem.name = "\(bar.name)"
         mapItem.openInMaps(launchOptions: options)
     }
+}
+
+class HoursHeader:UICollectionReusableView{
+    @IBOutlet weak var label: UILabel!
+}
+
+class DealCell:UICollectionViewCell{
+    @IBOutlet weak var label: UILabel!
+
 }

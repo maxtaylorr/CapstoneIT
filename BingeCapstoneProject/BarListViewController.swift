@@ -50,16 +50,16 @@ SideView {
 
         let cell = barsTableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let cell = cell as? BarTableViewCell {
-            cell.barTitleLabel.text = bar.name
-            cell.BarDescLabel.text = bar.hours
-            cell.barImage.kf.setImage(with: url)
+//            cell.barTitleLabel.text = bar.name
+//            cell.BarDescLabel.text = bar.hours
+//            cell.barImage.kf.setImage(with: url)
         }
         return cell
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let selectedRow = barsTableView.indexPathForSelectedRow {
-            barData.selectedBar = barList[selectedRow.row]
+            destination.selectedBar = barList[selectedRow.row]
         }
     }
 

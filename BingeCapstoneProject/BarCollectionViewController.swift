@@ -43,7 +43,6 @@ class BarCollectionViewController: UICollectionViewController {
             let currentBar = barList[indexPath.row]
             cell.barImage.kf.setImage(with: URL(string: currentBar.imageURL))
             cell.barTitleLabel.text = currentBar.name
-            print("\(currentBar.name)")
             // TODO: Add accurate location data
             let centerLatitude = 38.948
             let centerLongitude = -92.328
@@ -59,6 +58,19 @@ class BarCollectionViewController: UICollectionViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BarDetailViewController, let indexPath = collectionView.indexPathsForSelectedItems?.first {
+            destination.selectedBar = barList[indexPath.row]
+        }
+    }
+
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
     // MARK: UICollectionViewDelegate
     
     /*
