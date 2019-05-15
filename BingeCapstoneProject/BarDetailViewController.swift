@@ -80,16 +80,22 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MapViewController {
+            destination.selectedBar = selectedBar
+        }
+    }
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
         if let annotationTitle = view.annotation?.title
         {
             print("User tapped on annotation with title: \(annotationTitle!)")
-//            openMapForPlace(view.annotation)
+            openMapForPlace(selectedBar)
         }
     }
-    
+
     func updateLabelValues(_ bar:Bar){
         barTitleLabel.text = bar.name
         barDescLabel.text = bar.hours
@@ -110,8 +116,8 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
         let region = MKCoordinateRegion(center: center, span: span)
         barMapView.setRegion(region, animated: true)
         barMapView.showsUserLocation = true
-
     }
+    
     
     func openMapForPlace(_ bar:Bar) {
         let latitude:CLLocationDegrees =  bar.coordinate.latitude
