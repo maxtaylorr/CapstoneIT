@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Kingfisher
 
-class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollectionViewDataSource {
+class BarDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var dealCollectionView: UICollectionView!
     // Bar passed by selection from map or table
     @IBOutlet weak var barDescLabel: UILabel!
@@ -33,50 +33,7 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
         addPin(selectedBar)
     }
     
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        print(selectedBar.deals.count)
-        return selectedBar.deals.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let deals = selectedBar.deals
-        return deals[section].deals.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind:
-        String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard
-                let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: "dealHour",
-                    for: indexPath) as? HoursHeader
-                else {
-                    fatalError("Invalid view type")
-            }
-            
-            let title = selectedBar.deals[indexPath.section].hours
-            print(title)
-            headerView.label.text = "Hours: \(title)"
-            return headerView
-        default:
-            // 4
-            assert(false, "Invalid element type")
-        }
-    }
-    
-    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //        collectionView.register(DealCell.self, forCellWithReuseIdentifier: "dealCell")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dealCell", for: indexPath)
-        if let cell = cell as? DealCell{
-            let deal = selectedBar.deals[indexPath.section].deals
-            cell.label.text = deal[indexPath.row]
-            return cell
-        }
-        return cell
-    }
+  
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MapViewController {
@@ -134,9 +91,52 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
     }
 }
 
-//extension BarDetailViewController:UICollectionViewDataSource{
-//    
-//}
+extension BarDetailViewController:UICollectionViewDataSource{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        print(selectedBar.deals.count)
+        return selectedBar.deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let deals = selectedBar.deals
+        return deals[section].deals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind:
+        String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: "dealHour",
+                    for: indexPath) as? HoursHeader
+                else {
+                    fatalError("Invalid view type")
+            }
+            
+            let title = selectedBar.deals[indexPath.section].hours
+            print(title)
+            headerView.label.text = "Hours: \(title)"
+            return headerView
+        default:
+            // 4
+            assert(false, "Invalid element type")
+        }
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //        collectionView.register(DealCell.self, forCellWithReuseIdentifier: "dealCell")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dealCell", for: indexPath)
+        if let cell = cell as? DealCell{
+            let deal = selectedBar.deals[indexPath.section].deals
+            cell.label.text = deal[indexPath.row]
+            return cell
+        }
+        return cell
+    }
+}
 
 
 extension UIView
