@@ -38,12 +38,11 @@ extension MapViewController{
     }
 }
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
-SideView {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var selectedAnnotation:BarPointAnnotation?
-    var directionToRoot: PushTransitionDirection = .left
+    var selectedBar:Bar?
     
     var barHeader:UIBarHeader!
     //Test Constants
@@ -73,6 +72,17 @@ SideView {
         if let bars = barData.bars{
             updateMapPins(Array(bars))
         }
+        if let bar = selectedBar{
+            focusMapView(bar)
+        }
+    }
+    
+    func focusMapView(_ bar: Bar) {
+        let center = CLLocationCoordinate2D(latitude: bar.coordinate.latitude, longitude: bar.coordinate.longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: true)
+        mapView.showsUserLocation = true
     }
     // create pins on map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -107,6 +117,7 @@ SideView {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BarDetailViewController, let annotation = selectedAnnotation {
             let bar = annotation.bar
+            destination.selectedBar = bar
         }
     }
     

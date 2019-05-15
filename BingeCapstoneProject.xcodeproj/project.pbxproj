@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D5DFA55225CD1EF0058FD19 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */; };
 		21C765BB2BE4E997F43BA14C /* Pods_BingeCapstoneProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEFF46BB1FAF82E75958EF9D /* Pods_BingeCapstoneProject.framework */; };
-		276B1EFA227F7C8300FDB7BF /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EF9227F7C8300FDB7BF /* BaseNC.swift */; };
-		276B1EFD227F7C8900FDB7BF /* SideBySidePushInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */; };
-		276B1EFE227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */; };
 		27A35D9D228906FF008E0348 /* CustomUILayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A35D9C228906FF008E0348 /* CustomUILayout.swift */; };
 		27C21CF6228A561100953FC2 /* BarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C21CF5228A561100953FC2 /* BarCollectionViewController.swift */; };
 		27C21CFA228B0F4C00953FC2 /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C21CF9228B0F4C00953FC2 /* BarCollectionViewCell.swift */; };
@@ -22,16 +19,11 @@
 		5BE03DA522190E57006B2603 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA322190E57006B2603 /* Main.storyboard */; };
 		5BE03DA722190E59006B2603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA622190E59006B2603 /* Assets.xcassets */; };
 		5BE03DAA22190E59006B2603 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE03DA822190E59006B2603 /* LaunchScreen.storyboard */; };
-		5BE03DB2221914EF006B2603 /* BarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */; };
-		5BE03DB422191550006B2603 /* BarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03DB322191550006B2603 /* BarListViewController.swift */; };
 		5BE03DB622191569006B2603 /* BarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE03DB522191569006B2603 /* BarDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		276B1EF9227F7C8300FDB7BF /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
-		276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushTransitionAnimator.swift; sourceTree = "<group>"; };
-		276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySidePushInteractor.swift; sourceTree = "<group>"; };
 		27A35D9C228906FF008E0348 /* CustomUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUILayout.swift; sourceTree = "<group>"; };
 		27C21CF5228A561100953FC2 /* BarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewController.swift; sourceTree = "<group>"; };
 		27C21CF9228B0F4C00953FC2 /* BarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -44,8 +36,6 @@
 		5BE03DA622190E59006B2603 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BE03DA922190E59006B2603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BE03DAB22190E59006B2603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewCell.swift; sourceTree = "<group>"; };
-		5BE03DB322191550006B2603 /* BarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarListViewController.swift; sourceTree = "<group>"; };
 		5BE03DB522191569006B2603 /* BarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarDetailViewController.swift; sourceTree = "<group>"; };
 		877CA9D4A04C91DB9238CDB4 /* Pods-BingeCapstoneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BingeCapstoneProject.debug.xcconfig"; path = "Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject.debug.xcconfig"; sourceTree = "<group>"; };
 		C5F249D3A64952D163686E00 /* Pods-BingeCapstoneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BingeCapstoneProject.release.xcconfig"; path = "Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,17 +99,12 @@
 				5BE03D9F22190E57006B2603 /* AppDelegate.swift */,
 				0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */,
 				5BE03DB522191569006B2603 /* BarDetailViewController.swift */,
-				5BE03DB322191550006B2603 /* BarListViewController.swift */,
+				27C21CF5228A561100953FC2 /* BarCollectionViewController.swift */,
+				27C21CF9228B0F4C00953FC2 /* BarCollectionViewCell.swift */,
 				5BE03DA622190E59006B2603 /* Assets.xcassets */,
 				5B35CB972238A7B900F2ECB7 /* GoogleService-Info.plist */,
 				5BE03DAB22190E59006B2603 /* Info.plist */,
-				5BE03DB1221914EF006B2603 /* BarTableViewCell.swift */,
-				276B1EF9227F7C8300FDB7BF /* BaseNC.swift */,
-				276B1EFC227F7C8900FDB7BF /* SideBySidePushInteractor.swift */,
-				276B1EFB227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift */,
 				27A35D9C228906FF008E0348 /* CustomUILayout.swift */,
-				27C21CF5228A561100953FC2 /* BarCollectionViewController.swift */,
-				27C21CF9228B0F4C00953FC2 /* BarCollectionViewCell.swift */,
 			);
 			path = BingeCapstoneProject;
 			sourceTree = "<group>";
@@ -236,7 +221,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BingeCapstoneProject/Pods-BingeCapstoneProject-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/CollectionViewSlantedLayout/CollectionViewSlantedLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -250,7 +234,6 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionViewSlantedLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -271,14 +254,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276B1EFA227F7C8300FDB7BF /* BaseNC.swift in Sources */,
-				276B1EFD227F7C8900FDB7BF /* SideBySidePushInteractor.swift in Sources */,
 				27C21CFA228B0F4C00953FC2 /* BarCollectionViewCell.swift in Sources */,
-				276B1EFE227F7C8900FDB7BF /* SideBySidePushTransitionAnimator.swift in Sources */,
 				5BE03DA022190E57006B2603 /* AppDelegate.swift in Sources */,
 				0D5DFA55225CD1EF0058FD19 /* MapViewController.swift in Sources */,
-				5BE03DB2221914EF006B2603 /* BarTableViewCell.swift in Sources */,
-				5BE03DB422191550006B2603 /* BarListViewController.swift in Sources */,
 				27C21CF6228A561100953FC2 /* BarCollectionViewController.swift in Sources */,
 				27DC09CE2280DF9200E4E1EC /* BarDataProvider.swift in Sources */,
 				27A35D9D228906FF008E0348 /* CustomUILayout.swift in Sources */,
