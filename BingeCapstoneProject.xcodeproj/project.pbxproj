@@ -29,10 +29,10 @@
 
 /* Begin PBXFileReference section */
 		0D5DFA54225CD1EF0058FD19 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		27502D37228C7E8500CB66DC /* AppIcon_Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon_Store.png; path = 3x/AppIcon_Store.png; sourceTree = "<group>"; };
-		27502D39228C7F4100CB66DC /* AppIcon_ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon_ios7.png; path = 3x/AppIcon_ios7.png; sourceTree = "<group>"; };
-		27502D3B228C7F9200CB66DC /* AppIcon_ios7_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon_ios7_120.png; path = 3x/AppIcon_ios7_120.png; sourceTree = "<group>"; };
-		27502D3D228C7FCA00CB66DC /* AppIcon_Store _ios7_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon_Store _ios7_180.png"; path = "3x/AppIcon_Store _ios7_180.png"; sourceTree = "<group>"; };
+		27502D37228C7E8500CB66DC /* AppIcon_Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_Store.png; sourceTree = "<group>"; };
+		27502D39228C7F4100CB66DC /* AppIcon_ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_ios7.png; sourceTree = "<group>"; };
+		27502D3B228C7F9200CB66DC /* AppIcon_ios7_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_ios7_120.png; sourceTree = "<group>"; };
+		27502D3D228C7FCA00CB66DC /* AppIcon_Store _ios7_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon_Store _ios7_180.png"; sourceTree = "<group>"; };
 		27502D41228C9BB500CB66DC /* BingeHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BingeHeader.png; sourceTree = "<group>"; };
 		27A35D9C228906FF008E0348 /* CustomUILayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUILayout.swift; sourceTree = "<group>"; };
 		27C21CF5228A561100953FC2 /* BarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +73,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		27502D43228C9BFE00CB66DC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				27502D3D228C7FCA00CB66DC /* AppIcon_Store _ios7_180.png */,
+				27502D3B228C7F9200CB66DC /* AppIcon_ios7_120.png */,
+				27502D39228C7F4100CB66DC /* AppIcon_ios7.png */,
+				27502D37228C7E8500CB66DC /* AppIcon_Store.png */,
+				27502D41228C9BB500CB66DC /* BingeHeader.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		2750406E226E5635008A9814 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +115,8 @@
 		5BE03D9E22190E57006B2603 /* BingeCapstoneProject */ = {
 			isa = PBXGroup;
 			children = (
-				27502D3D228C7FCA00CB66DC /* AppIcon_Store _ios7_180.png */,
-				27502D3B228C7F9200CB66DC /* AppIcon_ios7_120.png */,
-				27502D39228C7F4100CB66DC /* AppIcon_ios7.png */,
-				27502D37228C7E8500CB66DC /* AppIcon_Store.png */,
+				27502D43228C9BFE00CB66DC /* Images */,
 				5BE03DA822190E59006B2603 /* LaunchScreen.storyboard */,
-				27502D41228C9BB500CB66DC /* BingeHeader.png */,
 				5BE03DA322190E57006B2603 /* Main.storyboard */,
 				27DC09CD2280DF9200E4E1EC /* BarDataProvider.swift */,
 				5BE03D9F22190E57006B2603 /* AppDelegate.swift */,

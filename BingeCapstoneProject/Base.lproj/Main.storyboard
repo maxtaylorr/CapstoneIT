@@ -195,7 +195,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BingeHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="aL8-ie-Qfz">
-                                    <rect key="frame" x="-120" y="-22" width="240" height="45"/>
+                                    <rect key="frame" x="-78" y="-16" width="156" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
@@ -267,13 +267,14 @@
                             <outlet property="delegate" destination="6xN-aZ-bCL" id="T6V-1i-7aK"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Jkz-hR-5uX">
+                    <navigationItem key="navigationItem" id="MS8-Va-QPm">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="pec-mn-Z9P">
+                        <view key="titleView" contentMode="scaleToFill" id="giN-0l-faK">
+                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BingeHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="V1A-4v-90G">
-                                    <rect key="frame" x="-120" y="-22" width="240" height="45"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BingeHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="BWP-cL-V9S">
+                                    <rect key="frame" x="-78.5" y="-14" width="156" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
