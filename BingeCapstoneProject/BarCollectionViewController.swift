@@ -14,17 +14,19 @@ import CoreLocation
 private let reuseIdentifier = "barCell"
 
 class BarCollectionViewController: UICollectionViewController {
-    
-    var barList:[Bar]!
+    private var barList = [Bar]()
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let bars = barData.bars{
-            barList = Array(bars)
+        DispatchQueue.main.async {
+            barData.fetchData(completion: self.setBarList(_:))
         }
-        barData.pullData()
+        super.viewDidLoad()
+    }
+    
+    func setBarList(_ bars:[Bar]){
+        barList = bars
         self.collectionView.reloadData()
     }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -33,7 +35,7 @@ class BarCollectionViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return barData.bars!.count
+        return barList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -10,34 +10,6 @@ import UIKit
 import MapKit
 import FirebaseFirestore
 
-//Functions for UI Design
-extension MapViewController{
-    func setupMapViewLayer(){
-//        let mapShape = CAShapeLayer()
-//        view.layer.addSublayer(mapShape)
-//        mapShape.strokeColor = UIColor.red.cgColor
-//        mapShape.fillColor = UIColor.blue.cgColor
-//        mapShape.lineWidth = .init(2.0)
-//
-//        let mapClipBorder = CGMutablePath()
-////        mapClipBorder.addRoundedRect(in: mapView.bounds, cornerWidth: 10, cornerHeight: 10)
-////        mapShape.path = mapClipBorder
-//        mapClipBorder.addRect(rect)
-//        mapShape.path = mapClipBorder
-////
-//        let parentNode = SKShapeNode(path: )
-//
-//        let boundingBoxNode = SKShapeNode(rectOf: self.view.calculateAccumulatedFrame().size)
-//        boundingBoxNode.lineWidth = 1
-//        boundingBoxNode.strokeColor = .black
-//        boundingBoxNode.fillColor = .clear
-//        boundingBoxNode.path = boundingBoxNode.path?.copy(dashingWithPhase: 0,
-//                                                          lengths: [10,10])
-//
-//        parentNode.addChild(boundingBoxNode)
-    }
-}
-
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
@@ -59,22 +31,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         self.getCurrentLocation()
         self.createMap()
-        self.setupMapViewLayer()
-        if let bars = barData.bars{
-            updateMapPins(Array(bars))
+        DispatchQueue.main.async {
+            barData.fetchData(completion: self.loadMapData(_:))
         }
         mapView.delegate = self
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.reloadInputViews()
-        if let bars = barData.bars{
-            updateMapPins(Array(bars))
-        }
-        if let bar = selectedBar{
-            focusMapView(bar)
-        }
+
+    func loadMapData(_ bars:[Bar]){
+        updateMapPins(bars)
     }
     
     func focusMapView(_ bar: Bar) {
@@ -110,7 +75,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
-//        barHeader.update(selectedAnnotation?.bar)
+        focusMapView(selectedAnnotation!.bar)
     }
     
     // pass Bar to BarDetailViewController

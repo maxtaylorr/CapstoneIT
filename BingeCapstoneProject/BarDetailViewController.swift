@@ -25,15 +25,12 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
         super.viewDidLoad()
         barMapView.delegate = self
         barMapView.addInnerShadow(onSide: .top, shadowColor: UIColor.black, shadowSize: .init(20.0), cornerRadius: 0.0, shadowOpacity: 0.2)
-        dealCollectionView.reloadData()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateLabelValues(selectedBar)
         focusMapView(selectedBar)
         addPin(selectedBar)
-        dealCollectionView.reloadData()
     }
     
     
@@ -136,6 +133,10 @@ class BarDetailViewController: UIViewController, MKMapViewDelegate, UICollection
         mapItem.openInMaps(launchOptions: options)
     }
 }
+
+//extension BarDetailViewController:UICollectionViewDataSource{
+//    
+//}
 
 
 extension UIView
