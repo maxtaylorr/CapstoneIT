@@ -71,8 +71,7 @@ SideView {
         super.viewDidLoad()
         barHeader.setupMaskLayer()
         barHeader.toggleView()
-        barHeader.setupBarName()
-        barHeader.setupBarInfo()
+        barHeader.setupInfo()
     }
     
     func setupMapView(){
@@ -137,7 +136,7 @@ SideView {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         selectedAnnotation = view.annotation as? MKPointAnnotation as? BarPointAnnotation
         barHeader.selectedBar = selectedAnnotation?.bar
-        barHeader.update()
+        barHeader.update(selectedAnnotation?.bar)
     }
     
     // pass Bar to BarDetailViewController
