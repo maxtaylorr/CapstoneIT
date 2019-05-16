@@ -53,7 +53,8 @@ class BarCollectionViewController: UICollectionViewController {
             
             let distanceInMeters = coordinate₀.distance(from: coordinate₁) // result is in meters
             let distanceInMiles = distanceInMeters / 1609
-            cell.BarDistanceLabel.text = "\(distanceInMiles) mi"
+            let str = NSString(format: "%.2f", distanceInMiles)
+            cell.BarDistanceLabel.text = "\(str) mi"
             return cell
         }else{
             return cellA
